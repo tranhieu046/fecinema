@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Trang chủ</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <script src="assets/js/main.js" defer></script>
+  </head>
+  <body>
+    <!-- Top header-->
+    <div class="top-header">
+      <div class="container">
+        <div class="inner-wrap">
+          <div class="inner-item"><i class="fa-solid fa-phone"></i>Hotline: 0123.456.789</div>
+          <div class="inner-item"><i class="fa-solid fa-envelope"></i>contact@lattecinema.com</div>
+        </div>
+      </div>
+    </div>
+    <!-- End Top header-->
+    <!-- Header-->
+    <header class="header">
+      <div class="container">
+        <div class="inner-wrap"><a class="inner-logo" href="#"><img alt="" src="assets/images/logo1.svg"></a>
+          <nav class="inner-menu">
+            <ul>
+              <li><a href="#">Phim</a>
+                <ul>
+                  <li><a href="#">Phim đang chiếu</a></li>
+                  <li><a href="#">Phim sắp chiếu</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Mua vé</a></li>
+              <li><a href="#">Vé của tôi</a></li>
+              <li><a href="#">Rạp phim</a></li>
+            </ul>
+          </nav>
+          <div class="inner-login"><i class="fa-solid fa-circle-user"></i>
+            <div id="openBtn">Đăng nhập/Đăng kí</div>
+            <!-- Login-->
+            <div class="hidden" id="registerModal">
+              <div id="overlay"></div>
+              <div class="modal-content"><span id="closeBtn">×</span>
+                <div class="modal-header">
+                  <div class="tab active" id="loginTab">ĐĂNG NHẬP</div>
+                  <div class="tab" id="registerTab">ĐĂNG KÝ</div>
+                </div>
+                <div class="modal-body">
+                  <form id="loginForm">
+                    <div class="form-group">
+                      <label>Nhập số điện thoại</label>
+                      <input placeholder="Số điện thoại" type="text">
+                    </div>
+                    <label>Mật khẩu</label>
+                    <div class="password-wrapper">
+                      <input placeholder="Mật khẩu" type="password"><i class="fa-solid fa-eye toggle-password"></i>
+                    </div>
+                    <button class="submit-btn" type="button">ĐĂNG NHẬP</button>
+                  </form>
+                  <form class="hidden" id="registerForm">
+                    <div class="form-group">
+                      <label>Tên<span>*</span></label>
+                      <input placeholder="Tên" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label>Số điện thoại<span>*</span></label>
+                      <input placeholder="Số điện thoại" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label>Email<span>*</span></label>
+                      <input placeholder="Email" type="email">
+                    </div>
+                    <div class="form-group">
+                      <label>Mật khẩu<span>*</span></label>
+                      <div class="password-wrapper">
+                        <input placeholder="Mật khẩu" type="password"><i class="fa-solid fa-eye toggle-password"></i>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Ngày sinh<span>*</span></label>
+                      <input class="date-input" type="date">
+                      <div class="gender-group">
+                        <label class="gender-item">
+                          <input name="gender" type="radio"><span>*</span>Nam
+                        </label>
+                        <label class="gender-item">
+                          <input name="gender" type="radio">Nữ
+                        </label>
+                      </div>
+                    </div>
+                    <button class="submit-btn" type="button">ĐĂNG KÝ</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- Login-->
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- End Header-->
+    <div class="section-1">
+      <div class="inner-head">
+        <h2 class="inner-title">Phim Hot hôm nay</h2>
+      </div>
+      <div class="inner-wrap">
+        <div class="slider-wrapper">
+          <div class="slide"><img alt="Banner 1" src="assets/images/banner-3.jpg"></div>
+          <div class="slide"><img alt="Banner 1" src="assets/images/banner-4.jpg"></div>
+          <div class="slide"><img alt="Banner 1" src="assets/images/banner-5.jpg"></div>
+        </div>
+        <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="slider-dots"></div>
+      </div>
+    </div>
+    <!-- Footer-->
+    <footer class="footer">
+      <div class="container">
+        <div class="inner-wrap-1">
+          <div class="inner-title">Đăng ký ngay để không bỏ lỡ các chương trình của chúng tôi</div>
+          <form class="inner-form" action="">
+            <input type="text" placeholder="Nhập email của bạn...">
+            <button>Đăng ký ngay</button>
+          </form>
+        </div>
+        <div class="inner-wrap-2">
+          <ul class="inner-links">
+            <li><a href="#">Trang Chủ</a></li>
+            <li><a href="#">Mua vé</a></li>
+            <li><a href="#">Vé của tôi</a></li>
+            <li><a href="#">Rạp phim</a></li>
+          </ul>
+          <ul class="inner-socials">
+            <li><a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+          </ul>
+        </div>
+        <div class="inner-wrap-3">
+          <div class="inner-copyright">© 2026 LatteCinema. All rights reserved.</div><a class="inner-logo" href="#"><img src="assets/images/logo1.svg" alt="LatteCinema"></a>
+          <ul class="inner-links">
+            <li><a href="#">Điều khoản dịch vụ</a></li>
+            <li><a href="#">Chính sách bảo mật</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer-->
+    <!-- Box-contact-->
+    <ul class="box-contact">
+      <li><a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+      <li><a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+      <li><a href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
+      <li><a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+    </ul>
+    <!-- Box-contact-->
+  </body>
+</html>
