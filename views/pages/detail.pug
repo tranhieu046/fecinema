@@ -1,0 +1,282 @@
+doctype html
+html(lang="vi")
+  head
+    meta(charset="UTF-8")
+    meta(
+      content="width=device-width, initial-scale=1.0" 
+      name="viewport"
+      )
+    title Trang chi tiết phim
+    link(
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+      rel="stylesheet"
+      )
+    link(
+      href="assets/css/style.css" 
+      rel="stylesheet"
+      )
+    script(
+        src="assets/js/main.js" defer
+        )
+  body
+    // Top header
+    .top-header
+      .container
+        .inner-wrap
+          .inner-item
+            i.fa-solid.fa-phone
+            | Hotline: 0123.456.789
+          .inner-item
+            i.fa-solid.fa-envelope
+            | contact@lattecinema.com
+    // End Top header
+    // Header
+    header.header
+      .container
+        .inner-wrap
+          a.inner-logo(href="#")
+            img(
+              alt="" 
+              src="assets/images/logo1.svg"
+              )
+          nav.inner-menu
+            ul
+              li
+                a(href="#") Phim
+                ul
+                  li
+                    a(href="#") Phim đang chiếu
+                  li
+                    a(href="#") Phim sắp chiếu
+              li
+                a(href="#") Mua vé
+              li
+                a(href="#") Vé của tôi
+              li
+                a(href="#") Rạp phim
+          .inner-login
+            i.fa-solid.fa-circle-user
+            #openBtn Đăng nhập/Đăng kí
+            // Login
+            #registerModal.hidden
+              #overlay
+              .modal-content
+                span#closeBtn ×
+                .modal-header
+                  #loginTab.tab.active ĐĂNG NHẬP
+                  #registerTab.tab ĐĂNG KÝ
+                .modal-body
+                  form#loginForm
+                    .form-group
+                      label Nhập số điện thoại
+                      input(
+                        placeholder="Số điện thoại" 
+                        type="text"
+                        )
+                    label Mật khẩu
+                    .password-wrapper
+                      input(
+                        placeholder="Mật khẩu" 
+                        type="password"
+                        )
+                      i.fa-solid.fa-eye.toggle-password
+                    button.submit-btn(type="button") ĐĂNG NHẬP
+                  form#registerForm.hidden
+                    .form-group
+                      label
+                        | Tên
+                        span *
+                      input(
+                        placeholder="Tên" 
+                        type="text"
+                        )
+                    .form-group
+                      label
+                        | Số điện thoại
+                        span *
+                      input(
+                        placeholder="Số điện thoại" 
+                        type="text"
+                        )
+                    .form-group
+                      label
+                        | Email
+                        span *
+                      input(
+                        placeholder="Email" 
+                        type="email"
+                        )
+                    .form-group
+                      label
+                        | Mật khẩu
+                        span *
+                      .password-wrapper
+                        input(
+                          placeholder="Mật khẩu" 
+                          type="password"
+                          )
+                        i.fa-solid.fa-eye.toggle-password
+                    .form-group
+                      label
+                        | Ngày sinh
+                        span *
+                      input.date-input(type="date")
+                      .gender-group
+                        label.gender-item
+                          input(
+                            name="gender" 
+                            type="radio"
+                            )
+                          span *
+                          | Nam
+                        label.gender-item
+                          input(
+                            name="gender" 
+                            type="radio"
+                            )
+                          | Nữ
+                    button.submit-btn(type="button") ĐĂNG KÝ
+            // Login
+    // End Header
+    // Box-trailer
+    .box-trailer
+        .inner-wrap
+            .inner-trailer 
+                <iframe width="660" height="400" src="https://www.youtube.com/embed/HyaRaYwgQ-A?si=gFKNIvjZvpYaCrey" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    // End box-trailer
+    // Section-4
+    // Section-4
+    .section-4
+        .container
+            .inner-title 
+                h2 Giới thiệu phim
+            .inner-wrap
+                .inner-left
+                    .inner-image
+                        img(src="assets/images/img-item-2.jpg", alt="Tài")
+                    a.inner-button(href="#") Đặt vé
+
+                .inner-right
+                    .inner-name TÀI
+                    .inner-rating
+                        b.inner-label Xem xếp hạng
+                        span.inner-stars
+                            i.fa-solid.fa-star
+                            i.fa-solid.fa-star
+                            i.fa-solid.fa-star
+                            i.fa-solid.fa-star
+                            i.fa-solid.fa-star
+                        i.inner-score 9.5
+
+                    .inner-list
+                        .inner-item
+                            b Đạo diễn:
+                            span  Mai Tài Phến
+                        .inner-item
+                            b Thể loại: 
+                            span  Gia đình, Hành Động, Tâm Lý
+                        .inner-item
+                            b Ngày phát hành:
+                            span  06/03/2026
+                        .inner-item
+                            b Thời lượng:
+                            span  101 phút
+                        .inner-item
+                            b Rated:
+                            b  T16 - Phim được phổ biến đến người xem từ đủ 16 tuổi trở lên (16+)
+            .inner-desc
+                h3 Tóm tắt
+                p
+                    | Tài đã trải qua hành trình đầy khó khăn, làm đủ mọi nghề,
+                    | thậm chí là những phi vụ nguy hiểm phải đặt cược mạng sống
+                    | để bảo vệ “tài sản” quý giá nhất đời mình. Liệu Tài có đủ
+                    | nghị lực và tinh thần để vượt lên trên nghịch cảnh, trong
+                    | gang tấc sự sống? Bộ phim đem đến tiếng cười, tình yêu và
+                    | sự bao dung mạnh mẽ về những mối quan hệ tinh thần và xã
+                    | hội trong những ngày đầu xuân 2026.
+    // Footer
+    footer.footer
+      .container
+        .inner-wrap-1
+          .inner-title Đăng ký ngay để không bỏ lỡ các chương trình của chúng tôi
+          form.inner-form(action="")
+            input(
+              type="text" 
+              placeholder="Nhập email của bạn..."
+              )
+            button Đăng ký ngay
+        .inner-wrap-2
+          ul.inner-links
+            li
+              a(href="#") Trang Chủ
+            li
+              a(href="#") Mua vé
+            li
+              a(href="#") Vé của tôi
+            li
+              a(href="#") Rạp phim
+          ul.inner-socials
+            li
+              a(
+                href="#" 
+                target="_blank"
+                )
+                i.fa-brands.fa-facebook
+            li
+              a(
+                href="#" 
+                target="_blank"
+                )
+                i.fa-brands.fa-x-twitter
+            li
+              a(
+                href="#" 
+                target="_blank"
+                )
+                i.fa-brands.fa-instagram
+            li
+              a(
+                href="#" 
+                target="_blank"
+                )
+                i.fa-brands.fa-youtube
+        .inner-wrap-3
+          .inner-copyright © 2026 LatteCinema. All rights reserved.
+          a.inner-logo(href="#")
+            img(
+              src="assets/images/logo1.svg" 
+              alt="LatteCinema"
+              )
+          ul.inner-links
+            li
+              a(href="#") Điều khoản dịch vụ
+            li
+              a(href="#") Chính sách bảo mật
+    // End Footer
+    // Box-contact
+    ul.box-contact
+      li
+        a(
+          href="#" 
+          target="_blank"
+          )
+          i.fa-brands.fa-facebook-f
+      li
+        a(
+          href="#" 
+          target="_blank"
+          )
+          i.fa-brands.fa-instagram
+      li
+        a(
+          href="#" 
+          target="_blank"
+          )
+          i.fa-brands.fa-whatsapp
+      li
+        a(
+          href="#" 
+          target="_blank"
+          )
+          i.fa-brands.fa-youtube
+    // Box-contact

@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "pug -w ./views/pages -o ./ -P"
+    "start": "pug -w ./views/pages -o ./ -P",
+    "serve": "npx serve -p 3000"
+
   },
   "dependencies": {
     "pug-cli": "^1.0.0-alpha6"

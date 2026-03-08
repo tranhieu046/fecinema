@@ -1,0 +1,20 @@
+mixin productItem(imgSrc, title, genre, time, date)
+  .product-item
+    .inner-image
+      a(href="detail.html")
+        img(src=imgSrc, alt=title)
+      .inner-layer-hover
+        a.btn-reverse(href="#") Mua vé
+        a.btn-view(href="detail.html") Chi tiết
+    .inner-name
+      a(href="detail.html")= title
+    .inner-text
+      .inner-desc
+        b Thể loại:
+        span= " " + genre
+      .inner-time
+        b Thời lượng:
+        span= " " + time
+      .inner-date
+        b Khởi chiếu:
+        span= " " + date

@@ -2,24 +2,14 @@ doctype html
 html(lang="vi")
   head
     meta(charset="UTF-8")
-    meta(
-      content="width=device-width, initial-scale=1.0" 
-      name="viewport"
-      )
+    meta(content="width=device-width, initial-scale=1.0" name="viewport")
     title Trang chủ
-    link(
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
-      rel="stylesheet"
-      )
-    link(
-      href="assets/css/style.css" 
-      rel="stylesheet"
-      )
-    script(
-        src="assets/js/main.js" defer
-        )
+    link(href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet")
+    link(href="assets/css/style.css" rel="stylesheet")
+    script(src="assets/js/main.js" defer)
   body
-    // Top header
+    include ../mixins/mixins.pug
+
     .top-header
       .container
         .inner-wrap
@@ -29,25 +19,21 @@ html(lang="vi")
           .inner-item
             i.fa-solid.fa-envelope
             | contact@lattecinema.com
-    // End Top header
-    // Header
+
     header.header
       .container
         .inner-wrap
           a.inner-logo(href="#")
-            img(
-              alt="" 
-              src="assets/images/logo1.svg"
-              )
+            img(alt="" src="assets/images/logo1.svg")
           nav.inner-menu
             ul
               li
                 a(href="#") Phim
                 ul
                   li
-                    a(href="#") Phim đang chiếu
+                    a(href="#phim-dang-chieu") Phim đang chiếu
                   li
-                    a(href="#") Phim sắp chiếu
+                    a(href="#phim-sap-chieu") Phim sắp chiếu
               li
                 a(href="#") Mua vé
               li
@@ -57,7 +43,7 @@ html(lang="vi")
           .inner-login
             i.fa-solid.fa-circle-user
             #openBtn Đăng nhập/Đăng kí
-            // Login
+            
             #registerModal.hidden
               #overlay
               .modal-content
@@ -69,16 +55,10 @@ html(lang="vi")
                   form#loginForm
                     .form-group
                       label Nhập số điện thoại
-                      input(
-                        placeholder="Số điện thoại" 
-                        type="text"
-                        )
+                      input(placeholder="Số điện thoại" type="text")
                     label Mật khẩu
                     .password-wrapper
-                      input(
-                        placeholder="Mật khẩu" 
-                        type="password"
-                        )
+                      input(placeholder="Mật khẩu" type="password")
                       i.fa-solid.fa-eye.toggle-password
                     button.submit-btn(type="button") ĐĂNG NHẬP
                   form#registerForm.hidden
@@ -86,35 +66,23 @@ html(lang="vi")
                       label
                         | Tên
                         span *
-                      input(
-                        placeholder="Tên" 
-                        type="text"
-                        )
+                      input(placeholder="Tên" type="text")
                     .form-group
                       label
                         | Số điện thoại
                         span *
-                      input(
-                        placeholder="Số điện thoại" 
-                        type="text"
-                        )
+                      input(placeholder="Số điện thoại" type="text")
                     .form-group
                       label
                         | Email
                         span *
-                      input(
-                        placeholder="Email" 
-                        type="email"
-                        )
+                      input(placeholder="Email" type="email")
                     .form-group
                       label
                         | Mật khẩu
                         span *
                       .password-wrapper
-                        input(
-                          placeholder="Mật khẩu" 
-                          type="password"
-                          )
+                        input(placeholder="Mật khẩu" type="password")
                         i.fa-solid.fa-eye.toggle-password
                     .form-group
                       label
@@ -123,56 +91,110 @@ html(lang="vi")
                       input.date-input(type="date")
                       .gender-group
                         label.gender-item
-                          input(
-                            name="gender" 
-                            type="radio"
-                            )
+                          input(name="gender" type="radio")
                           span *
                           | Nam
                         label.gender-item
-                          input(
-                            name="gender" 
-                            type="radio"
-                            )
+                          input(name="gender" type="radio")
                           | Nữ
                     button.submit-btn(type="button") ĐĂNG KÝ
-            // Login
-    // End Header
+
     .section-1
       .inner-head
         h2.inner-title Phim Hot hôm nay
       .inner-wrap
         .slider-wrapper
           .slide
-            img(
-              alt="Banner 1" 
-              src="assets/images/banner-3.jpg"
-              )
+            img(alt="Banner 1" src="assets/images/banner-3.jpg")
           .slide
-            img(
-              alt="Banner 1" 
-              src="assets/images/banner-4.jpg"
-              )
+            img(alt="Banner 1" src="assets/images/banner-4.jpg")
           .slide
-            img(
-              alt="Banner 1" 
-              src="assets/images/banner-5.jpg"
-              )
+            img(alt="Banner 1" src="assets/images/banner-5.jpg")
         button.slider-btn.prev-btn
           i.fa-solid.fa-chevron-left
         button.slider-btn.next-btn
           i.fa-solid.fa-chevron-right
         .slider-dots
-    // Footer
+
+    .section-2#phim-dang-chieu
+      .container 
+        .inner-wrap 
+          .inner-title 
+            h2 Phim đang chiếu
+          .inner-list 
+            -
+              var nowShowing = [
+                {
+                  imgSrc: 'assets/images/img-item-1.jpg',
+                  title: 'Không còn chúng ta',
+                  genre: 'Tình cảm',
+                  time: '120p',
+                  date: '10/2/2026'
+                },
+                {
+                  imgSrc: 'assets/images/img-item-2.jpg',
+                  title: 'Tài',
+                  genre: 'Hành động',
+                  time: '101p',
+                  date: '06/03/2026'
+                },
+                {
+                  imgSrc: 'assets/images/img-item-3.jpg',
+                  title: 'Tài',
+                  genre: 'Hành động',
+                  time: '101p',
+                  date: '06/03/2026'
+                },
+                {
+                  imgSrc: 'assets/images/img-item-4.jpg',
+                  title: 'Tài',
+                  genre: 'Hành động',
+                  time: '101p',
+                  date: '06/03/2026'
+                },
+                {
+                  imgSrc: 'assets/images/img-item-5.jpg',
+                  title: 'Tài',
+                  genre: 'Hành động',
+                  time: '101p',
+                  date: '06/03/2026'
+                }
+              ]
+            each movie in nowShowing
+              +productItem(movie.imgSrc, movie.title, movie.genre, movie.time, movie.date)
+
+    .section-3#phim-sap-chieu
+      .container 
+        .inner-wrap 
+          .inner-title 
+            h2 Phim sắp chiếu
+          .inner-list 
+            -
+              var comingSoon = [
+                {
+                  imgSrc: 'assets/images/img-item-1.jpg',
+                  title: 'Kẻ Trộm Mặt Trăng',
+                  genre: 'Hoạt hình',
+                  time: '95p',
+                  date: '15/03/2026'
+                },
+                {
+                  imgSrc: 'assets/images/img-item-2.jpg',
+                  title: 'Mai',
+                  genre: 'Tâm lý',
+                  time: '130p',
+                  date: '20/03/2026'
+                }
+              ]
+            each movie in comingSoon
+              +productItem(movie.imgSrc, movie.title, movie.genre, movie.time, movie.date)
+
     footer.footer
       .container
         .inner-wrap-1
           .inner-title Đăng ký ngay để không bỏ lỡ các chương trình của chúng tôi
           form.inner-form(action="")
-            input(
-              type="text" 
-              placeholder="Nhập email của bạn..."
-              )
+            input(type="text" placeholder="Nhập email của bạn...")
             button Đăng ký ngay
         .inner-wrap-2
           ul.inner-links
@@ -186,67 +208,37 @@ html(lang="vi")
               a(href="#") Rạp phim
           ul.inner-socials
             li
-              a(
-                href="#" 
-                target="_blank"
-                )
+              a(href="#" target="_blank")
                 i.fa-brands.fa-facebook
             li
-              a(
-                href="#" 
-                target="_blank"
-                )
+              a(href="#" target="_blank")
                 i.fa-brands.fa-x-twitter
             li
-              a(
-                href="#" 
-                target="_blank"
-                )
+              a(href="#" target="_blank")
                 i.fa-brands.fa-instagram
             li
-              a(
-                href="#" 
-                target="_blank"
-                )
+              a(href="#" target="_blank")
                 i.fa-brands.fa-youtube
         .inner-wrap-3
           .inner-copyright © 2026 LatteCinema. All rights reserved.
           a.inner-logo(href="#")
-            img(
-              src="assets/images/logo1.svg" 
-              alt="LatteCinema"
-              )
+            img(src="assets/images/logo1.svg" alt="LatteCinema")
           ul.inner-links
             li
               a(href="#") Điều khoản dịch vụ
             li
               a(href="#") Chính sách bảo mật
-    // End Footer
-    // Box-contact
+
     ul.box-contact
       li
-        a(
-          href="#" 
-          target="_blank"
-          )
+        a(href="#" target="_blank")
           i.fa-brands.fa-facebook-f
       li
-        a(
-          href="#" 
-          target="_blank"
-          )
+        a(href="#" target="_blank")
           i.fa-brands.fa-instagram
       li
-        a(
-          href="#" 
-          target="_blank"
-          )
+        a(href="#" target="_blank")
           i.fa-brands.fa-whatsapp
       li
-        a(
-          href="#" 
-          target="_blank"
-          )
+        a(href="#" target="_blank")
           i.fa-brands.fa-youtube
-    // Box-contact
-    

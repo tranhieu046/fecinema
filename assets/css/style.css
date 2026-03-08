@@ -7,7 +7,7 @@
   box-sizing: border-box;
   font-family: "Lexend Deca", sans-serif;
 }
-
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background-color: #F7F7F7;
@@ -84,6 +84,7 @@ input, textarea, select, button {
 .header {
   background-color: #FDFDFD;
   padding: 12px 0;
+  border-bottom:2px solid #777 ;
 }
 
 .header .inner-wrap {
@@ -498,20 +499,23 @@ input, textarea, select, button {
 /* -------------------------------------------- */
 /* End Login */
 
+
 /* Section-1 */
 .section-1{
   background-color: #231F20;
+  padding-bottom: 10px;
 }
 
 .section-1 .inner-head{
   /* background-color: #99A2A5; */
   text-align: center;
+
 }
 .section-1 .inner-title{
   font-size: 30px;
   margin: 0;
   color: var(--color-primary-2);
-  background-color: #FAF3E0;
+  background-color: white;
   padding: 15px 0 5px 0;
 }
 .section-1 .inner-title::after {
@@ -527,12 +531,12 @@ input, textarea, select, button {
 .section-1 .inner-wrap {
   width: 1400px;
   position: relative;
-  overflow: hidden; 
+  overflow: hidden;
   margin: 0 auto;
 }
 
 .section-1 .slider-wrapper {
-    display: flex; 
+    display: flex;
     width: 100%;
     transition: transform 0.5s ease-in-out; /* Hiệu ứng trượt mượt */
 }
@@ -540,13 +544,13 @@ input, textarea, select, button {
 .section-1 .slide {
     min-width: 100%;
     flex: 0 0 100%;    /* Quan trọng: Không cho phép co giãn, giữ cứng 100% khung cha */
-    margin: 0;         
+    margin: 0;
     padding: 0;
 }
 
 .section-1 .slide img {
     width: 100%;
-    height: 420px; 
+    height: 420px;
     object-fit: cover;
     display: block;
     cursor: pointer;
@@ -597,7 +601,7 @@ input, textarea, select, button {
 }
 
 .dot.active {
-    background-color: var(--color-primary-2); 
+    background-color: var(--color-primary-2);
     transform: scale(1.1);
     box-shadow: 0 0 4px rgba(0,0,0,0.5);
 }
@@ -607,3 +611,220 @@ input, textarea, select, button {
  }
 }
 /* End Section-1 */
+/* Section-2 */
+.section-2{
+  margin-top: 20px;
+  padding: 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.section-2 .inner-wrap .inner-title{
+  display: grid;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.section-2 .inner-wrap .inner-title h2{
+  text-align: center;
+  width: 500px;
+  padding: 0 30px;
+  margin: 0;
+  font-size: 48px;
+  font-weight: 600;
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.section-2 .inner-list{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+}
+.product-item{
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 2.38px 2.38px 0px #00000040;
+}
+.product-item .inner-image{
+  position: relative;
+}
+
+.product-item .inner-image a{
+  display: block;
+  aspect-ratio: 230/330;
+  overflow: hidden;
+}
+
+.product-item .inner-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* lớp phủ */
+.product-item .inner-layer-hover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* nền đen mờ */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  opacity: 0;
+  transition: 0.3s;
+}
+
+/* hover vào ảnh thì hiện */
+.product-item:hover .inner-layer-hover{
+  opacity: 1;
+}
+
+/* style nút */
+.product-item .inner-layer-hover a{
+  width: 70%;
+  height: 50px;
+  text-align: center;
+  padding: 12px 0;
+  border: 1px solid white;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.product-item .inner-layer-hover a:hover{
+  background: white;
+  color: black;
+}
+.product-item .inner-name{
+  padding: 10px;
+  border-bottom: 1px solid #DEDEDE;
+}
+.product-item .inner-name a{
+  color: var(--color-primary);
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+.product-item .inner-text{
+  display: grid;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+/* --------------------- */
+
+
+
+/* End Section-2 */
+/* Section-3 */
+.section-3{
+  padding: 0;
+  padding-bottom: 30px;
+}
+.section-3 .inner-wrap .inner-title{
+  display: grid;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+.section-3 .inner-wrap .inner-title h2{
+  text-align: center;
+  width: 500px;
+  padding: 0 30px;
+  margin: 0;
+  font-size: 48px;
+  font-weight: 600;
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.section-3 .inner-list{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+}
+/* Section-3 */
+
+/* Box-trailer */
+.box-trailer{
+  background-color: var(--color-primary);
+}
+.box-trailer .inner-wrap .inner-trailer{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+/* End Box-trailer */
+
+/* Section-4 */
+/* Section-4 */
+.section-4{
+  padding: 40px 0;
+}
+.section-4 .inner-title h2{
+  padding: 0;
+  margin-top: 0;
+  font-size: 36px;
+
+  border-bottom: 2px solid var(--color-primary);
+}
+.section-4 .inner-wrap{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  gap: 30px;
+}
+.section-4 .inner-wrap .inner-left .inner-image{
+  width: 100%;
+  aspect-ratio: 230/330;
+  overflow: hidden;
+}
+.section-4 .inner-wrap .inner-left .inner-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.section-4 .inner-wrap .inner-left .inner-button{
+  margin-top: 8px;
+  width: 100%;
+  display: block;
+  text-align: center;
+  color: var(--color-primary);
+  padding: 10px;
+  color: #CDC197;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: var(--color-primary);
+  cursor: pointer;
+}
+.section-4 .inner-wrap .inner-right .inner-name{
+  color: var(--color-primary);
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.section-4 .inner-wrap .inner-right .inner-rating{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.section-4 .inner-wrap .inner-right .inner-stars{
+  color: rgb(221, 221, 65);
+}
+.section-4 .inner-wrap .inner-right .inner-score{
+  color: var(--color-primary);
+  font-size: 30px;
+  font-weight: 500;
+  position: relative;
+  margin-top: -14px;
+  margin-left: -5px;
+}
+.section-4 .inner-wrap .inner-right .inner-list{
+  display: grid;
+  gap: 5px;
+}
