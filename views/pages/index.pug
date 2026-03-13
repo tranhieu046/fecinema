@@ -99,7 +99,7 @@ html(lang="vi")
                           | Nữ
                     button.submit-btn(type="button") ĐĂNG KÝ
 
-    .section-1
+    section.section-1
       .inner-head
         h2.inner-title Phim Hot hôm nay
       .inner-wrap
@@ -116,7 +116,7 @@ html(lang="vi")
           i.fa-solid.fa-chevron-right
         .slider-dots
 
-    .section-2#phim-dang-chieu
+    section.section-2#phim-dang-chieu
       .container 
         .inner-wrap 
           .inner-title 
@@ -163,7 +163,7 @@ html(lang="vi")
             each movie in nowShowing
               +productItem(movie.imgSrc, movie.title, movie.genre, movie.time, movie.date)
 
-    .section-3#phim-sap-chieu
+    section.section-3#phim-sap-chieu
       .container 
         .inner-wrap 
           .inner-title 

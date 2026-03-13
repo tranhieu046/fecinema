@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rạp phim - LatteCinema</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script defer="" src="assets/js/main.js"></script>
+  </head>
+  <body>
+    <div class="top-header">
+      <div class="container">
+        <div class="inner-wrap">
+          <div class="inner-item"><i class="fa-solid fa-phone"></i>Hotline: 0123.456.789</div>
+          <div class="inner-item"><i class="fa-solid fa-envelope"></i>contact@lattecinema.com</div>
+        </div>
+      </div>
+    </div>
+    <header class="header">
+      <div class="container">
+        <div class="inner-wrap"><a class="inner-logo" href="index.html"><img src="assets/images/logo1.svg" alt="LatteCinema"></a>
+          <nav class="inner-menu">
+            <ul>
+              <li><a href="index.html">Phim</a>
+                <ul>
+                  <li><a href="index.html#phim-dang-chieu">Phim đang chiếu</a></li>
+                  <li><a href="index.html#phim-sap-chieu">Phim sắp chiếu</a></li>
+                </ul>
+              </li>
+              <li><a href="booking.html">Mua vé</a></li>
+              <li><a href="#">Vé của tôi</a></li>
+              <li><a class="inner-active" href="cinema.html">Rạp phim</a></li>
+            </ul>
+          </nav>
+          <div class="inner-login"><i class="fa-solid fa-circle-user"></i>
+            <div id="openBtn">Đăng nhập/Đăng kí</div>
+            <div class="hidden" id="registerModal">
+              <div id="overlay"></div>
+              <div class="modal-content"><span id="closeBtn">×</span>
+                <div class="modal-header">
+                  <div class="tab active" id="loginTab">ĐĂNG NHẬP</div>
+                  <div class="tab" id="registerTab">ĐĂNG KÝ</div>
+                </div>
+                <div class="modal-body">
+                  <form id="loginForm">
+                    <div class="form-group">
+                      <label>Nhập số điện thoại</label>
+                      <input type="text" placeholder="Số điện thoại">
+                    </div>
+                    <label>Mật khẩu</label>
+                    <div class="password-wrapper">
+                      <input type="password" placeholder="Mật khẩu"><i class="fa-solid fa-eye toggle-password"></i>
+                    </div>
+                    <button class="submit-btn" type="button">ĐĂNG NHẬP</button>
+                  </form>
+                  <form class="hidden" id="registerForm">
+                    <div class="form-group">
+                      <label>Tên<span>*</span></label>
+                      <input type="text" placeholder="Tên">
+                    </div>
+                    <div class="form-group">
+                      <label>Số điện thoại<span>*</span></label>
+                      <input type="text" placeholder="Số điện thoại">
+                    </div>
+                    <div class="form-group">
+                      <label>Email<span>*</span></label>
+                      <input type="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                      <label>Mật khẩu<span>*</span></label>
+                      <div class="password-wrapper">
+                        <input type="password" placeholder="Mật khẩu"><i class="fa-solid fa-eye toggle-password"></i>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Ngày sinh<span>*</span></label>
+                      <input class="date-input" type="date">
+                      <div class="gender-group">
+                        <label class="gender-item">
+                          <input type="radio" name="gender"><span>*</span>Nam
+                        </label>
+                        <label class="gender-item">
+                          <input type="radio" name="gender">Nữ
+                        </label>
+                      </div>
+                    </div>
+                    <button class="submit-btn" type="button">ĐĂNG KÝ</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="cinema-section">
+      <div class="container">
+        <div class="cinema-layout">
+          <aside class="cinema-sidebar">
+            <div class="sidebar-header">
+              <h2 class="sidebar-title">Hệ thống rạp</h2>
+            </div>
+            <div class="sidebar-filter">
+              <label class="filter-label" for="region-select">Chọn khu vực</label>
+              <div class="select-wrapper">
+                <select class="region-select" id="region-select">
+                  <option value="all">Tất cả</option>
+                  <option selected="" value="hanoi">Hà Nội</option>
+                  <option value="hcm">TP. Hồ Chí Minh</option>
+                  <option value="danang">Đà Nẵng</option>
+                  <option value="haiphong">Hải Phòng</option>
+                </select><i class="fa-solid fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="sidebar-cinema-list">
+              <div class="sidebar-cinema-item active" data-cinema="vincom">
+                <div class="cinema-icon"><i class="fa-solid fa-building"></i></div>
+                <div class="cinema-details">
+                  <div class="cinema-name">LatteCinema Vincom Bà Triệu</div>
+                  <div class="cinema-screens">8 phòng chiếu</div>
+                </div>
+              </div>
+              <div class="sidebar-cinema-item" data-cinema="timescity">
+                <div class="cinema-icon"><i class="fa-solid fa-building"></i></div>
+                <div class="cinema-details">
+                  <div class="cinema-name">LatteCinema Times City</div>
+                  <div class="cinema-screens">10 phòng chiếu</div>
+                </div>
+              </div>
+              <div class="sidebar-cinema-item" data-cinema="aeon">
+                <div class="cinema-icon"><i class="fa-solid fa-building"></i></div>
+                <div class="cinema-details">
+                  <div class="cinema-name">LatteCinema Aeon Mall Long Biên</div>
+                  <div class="cinema-screens">9 phòng chiếu</div>
+                </div>
+              </div>
+              <div class="sidebar-cinema-item" data-cinema="royal">
+                <div class="cinema-icon"><i class="fa-solid fa-building"></i></div>
+                <div class="cinema-details">
+                  <div class="cinema-name">LatteCinema Royal City</div>
+                  <div class="cinema-screens">12 phòng chiếu</div>
+                </div>
+              </div>
+              <div class="sidebar-cinema-item" data-cinema="megamall">
+                <div class="cinema-icon"><i class="fa-solid fa-building"></i></div>
+                <div class="cinema-details">
+                  <div class="cinema-name">LatteCinema Mega Mall</div>
+                  <div class="cinema-screens">7 phòng chiếu</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+          <main class="cinema-main">
+            <div class="cinema-hero"><img class="hero-image" alt="LatteCinema Vincom Bà Triệu" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&amp;h=400&amp;fit=crop">
+              <div class="hero-overlay">
+                <div class="hero-badge"><i class="fa-solid fa-star"></i><span>Premium</span></div>
+              </div>
+            </div>
+            <div class="cinema-info">
+              <div class="cinema-info-header">
+                <h1 class="cinema-info-name">LatteCinema Vincom Bà Triệu</h1>
+                <div class="cinema-info-badges"><span class="badge badge--imax">IMAX</span><span class="badge badge--4dx">4DX</span><span class="badge badge--dolby">Dolby Atmos</span></div>
+              </div>
+              <div class="cinema-info-details">
+                <div class="detail-item"><i class="fa-solid fa-location-dot"></i><span>Tầng 6, Vincom Center, 191 Bà Triệu, Hai Bà Trưng, Hà Nội</span></div>
+                <div class="detail-item"><i class="fa-solid fa-phone"></i><span>024 6262 6789</span></div>
+                <div class="detail-item"><i class="fa-solid fa-clock"></i><span>Mở cửa: 08:00 - 24:00</span></div>
+              </div>
+              <div class="cinema-facilities">
+                <h3 class="facilities-title">Tiện ích</h3>
+                <div class="facilities-list">
+                  <div class="facility-item"><i class="fa-solid fa-car"></i><span>Bãi đỗ xe</span></div>
+                  <div class="facility-item"><i class="fa-solid fa-utensils"></i><span>Nhà hàng</span></div>
+                  <div class="facility-item"><i class="fa-solid fa-wheelchair"></i><span>Xe lăn</span></div>
+                  <div class="facility-item"><i class="fa-solid fa-wifi"></i><span>Wifi miễn phí</span></div>
+                  <div class="facility-item"><i class="fa-solid fa-credit-card"></i><span>Thanh toán thẻ</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="cinema-showtimes">
+              <div class="showtimes-header">
+                <h2 class="showtimes-title">Lịch chiếu hôm nay</h2>
+                <div class="showtimes-date"><i class="fa-solid fa-calendar"></i><span>Chủ nhật, 09/03/2026</span></div>
+              </div>
+              <div class="showtimes-list">
+                <div class="showtime-movie">
+                  <div class="showtime-movie-poster"><img alt="Không còn chúng ta" src="https://image.tmdb.org/t/p/w500/qhb1qOilapbapxWQn9jtRCMwXJF.jpg"><span class="rating-badge">T16</span></div>
+                  <div class="showtime-movie-content">
+                    <div class="showtime-movie-header">
+                      <h3 class="showtime-movie-name">Không còn chúng ta</h3>
+                      <div class="showtime-movie-meta"><span class="meta-item">Tình cảm</span><span class="meta-divider">|</span><span class="meta-item">120 phút</span></div>
+                    </div>
+                    <div class="showtime-movie-formats">
+                      <div class="format-group"><span class="format-label">2D Phụ đề</span>
+                        <div class="format-times"><a class="time-btn disabled" href="booking.html">09:15</a><a class="time-btn disabled" href="booking.html">11:30</a><a class="time-btn" href="booking.html">14:00</a><a class="time-btn" href="booking.html">16:30</a><a class="time-btn" href="booking.html">19:00</a><a class="time-btn" href="booking.html">21:30</a></div>
+                      </div>
+                      <div class="format-group"><span class="format-label">IMAX</span>
+                        <div class="format-times"><a class="time-btn disabled" href="booking.html">10:30</a><a class="time-btn" href="booking.html">13:30</a><a class="time-btn" href="booking.html">18:00</a><a class="time-btn" href="booking.html">21:00</a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="showtime-movie">
+                  <div class="showtime-movie-poster"><img alt="Tài" src="https://image.tmdb.org/t/p/w500/gKkl37BQuKTanygYQG1pyYgLVgf.jpg"><span class="rating-badge">T18</span></div>
+                  <div class="showtime-movie-content">
+                    <div class="showtime-movie-header">
+                      <h3 class="showtime-movie-name">Tài</h3>
+                      <div class="showtime-movie-meta"><span class="meta-item">Hành động</span><span class="meta-divider">|</span><span class="meta-item">101 phút</span></div>
+                    </div>
+                    <div class="showtime-movie-formats">
+                      <div class="format-group"><span class="format-label">2D Phụ đề</span>
+                        <div class="format-times"><a class="time-btn disabled" href="booking.html">10:00</a><a class="time-btn" href="booking.html">14:15</a><a class="time-btn" href="booking.html">17:00</a><a class="time-btn" href="booking.html">19:45</a><a class="time-btn" href="booking.html">22:00</a></div>
+                      </div>
+                      <div class="format-group"><span class="format-label">4DX</span>
+                        <div class="format-times"><a class="time-btn disabled" href="booking.html">11:00</a><a class="time-btn" href="booking.html">15:30</a><a class="time-btn" href="booking.html">20:00</a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="showtime-movie">
+                  <div class="showtime-movie-poster"><img alt="Kẻ Trộm Mặt Trăng" src="https://image.tmdb.org/t/p/w500/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg"><span class="rating-badge rating-badge--green">P</span></div>
+                  <div class="showtime-movie-content">
+                    <div class="showtime-movie-header">
+                      <h3 class="showtime-movie-name">Kẻ Trộm Mặt Trăng</h3>
+                      <div class="showtime-movie-meta"><span class="meta-item">Hoạt hình</span><span class="meta-divider">|</span><span class="meta-item">95 phút</span></div>
+                    </div>
+                    <div class="showtime-movie-formats">
+                      <div class="format-group"><span class="format-label">2D Lồng tiếng</span>
+                        <div class="format-times"><a class="time-btn disabled" href="booking.html">09:00</a><a class="time-btn disabled" href="booking.html">11:00</a><a class="time-btn" href="booking.html">13:00</a><a class="time-btn" href="booking.html">15:00</a><a class="time-btn" href="booking.html">17:00</a></div>
+                      </div>
+                      <div class="format-group"><span class="format-label">3D Lồng tiếng</span>
+                        <div class="format-times"><a class="time-btn disabled" href="booking.html">10:00</a><a class="time-btn" href="booking.html">14:00</a><a class="time-btn" href="booking.html">16:00</a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="showtime-movie">
+                  <div class="showtime-movie-poster"><img alt="Mai" src="https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg"><span class="rating-badge">T16</span></div>
+                  <div class="showtime-movie-content">
+                    <div class="showtime-movie-header">
+                      <h3 class="showtime-movie-name">Mai</h3>
+                      <div class="showtime-movie-meta"><span class="meta-item">Tâm lý</span><span class="meta-divider">|</span><span class="meta-item">130 phút</span></div>
+                    </div>
+                    <div class="showtime-movie-formats">
+                      <div class="format-group"><span class="format-label">2D Phụ đề</span>
+                        <div class="format-times"><a class="time-btn disabled" href="booking.html">09:30</a><a class="time-btn disabled" href="booking.html">12:15</a><a class="time-btn" href="booking.html">15:00</a><a class="time-btn" href="booking.html">17:45</a><a class="time-btn" href="booking.html">20:30</a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <div class="inner-wrap-1">
+          <div class="inner-title">Đăng ký ngay để không bỏ lỡ các chương trình của chúng tôi</div>
+          <form class="inner-form" action="">
+            <input placeholder="Nhập email của bạn..." type="text">
+            <button>Đăng ký ngay</button>
+          </form>
+        </div>
+        <div class="inner-wrap-2">
+          <ul class="inner-links">
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="booking.html">Mua vé</a></li>
+            <li><a href="#">Vé của tôi</a></li>
+            <li><a href="cinema.html">Rạp phim</a></li>
+          </ul>
+          <ul class="inner-socials">
+            <li><a target="_blank" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a target="_blank" href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+            <li><a target="_blank" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a target="_blank" href="#"><i class="fa-brands fa-youtube"></i></a></li>
+          </ul>
+        </div>
+        <div class="inner-wrap-3">
+          <div class="inner-copyright">© 2026 LatteCinema. All rights reserved.</div><a class="inner-logo" href="index.html"><img alt="LatteCinema" src="assets/images/logo1.svg"></a>
+          <ul class="inner-links">
+            <li><a href="#">Điều khoản dịch vụ</a></li>
+            <li><a href="#">Chính sách bảo mật</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <ul class="box-contact">
+      <li><a target="_blank" href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+      <li><a target="_blank" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+      <li><a target="_blank" href="#"><i class="fa-brands fa-whatsapp"></i></a></li>
+      <li><a target="_blank" href="#"><i class="fa-brands fa-youtube"></i></a></li>
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,415 @@
+doctype html
+html(lang="vi")
+  head
+    meta(charset="UTF-8")
+    meta(
+      name="viewport" 
+      content="width=device-width, initial-scale=1.0"
+      )
+    title Mua vé - LatteCinema
+    link(
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      )
+    link(
+      rel="stylesheet" 
+      href="assets/css/style.css"
+      )
+    script(
+      defer="" 
+      src="assets/js/main.js"
+      )
+  body
+    .top-header
+      .container
+        .inner-wrap
+          .inner-item
+            i.fa-solid.fa-phone
+            | Hotline: 0123.456.789
+          .inner-item
+            i.fa-solid.fa-envelope
+            | contact@lattecinema.com
+    header.header
+      .container
+        .inner-wrap
+          a.inner-logo(href="index.html")
+            img(
+              src="assets/images/logo1.svg" 
+              alt="LatteCinema"
+              )
+          nav.inner-menu
+            ul
+              li
+                a(href="index.html") Phim
+                ul
+                  li
+                    a(href="index.html#phim-dang-chieu") Phim đang chiếu
+                  li
+                    a(href="index.html#phim-sap-chieu") Phim sắp chiếu
+              li
+                a.inner-active(href="booking.html") Mua vé
+              li
+                a(href="#") Vé của tôi
+              li
+                a(href="cinema.html") Rạp phim
+          .inner-login
+            i.fa-solid.fa-circle-user
+            #openBtn Đăng nhập/Đăng kí
+            #registerModal.hidden
+              #overlay
+              .modal-content
+                span#closeBtn ×
+                .modal-header
+                  #loginTab.tab.active ĐĂNG NHẬP
+                  #registerTab.tab ĐĂNG KÝ
+                .modal-body
+                  form#loginForm
+                    .form-group
+                      label Nhập số điện thoại
+                      input(
+                        type="text" 
+                        placeholder="Số điện thoại"
+                        )
+                    label Mật khẩu
+                    .password-wrapper
+                      input(
+                        type="password" 
+                        placeholder="Mật khẩu"
+                        )
+                      i.fa-solid.fa-eye.toggle-password
+                    button.submit-btn(type="button") ĐĂNG NHẬP
+                  form#registerForm.hidden
+                    .form-group
+                      label
+                        | Tên
+                        span *
+                      input(
+                        type="text" 
+                        placeholder="Tên"
+                        )
+                    .form-group
+                      label
+                        | Số điện thoại
+                        span *
+                      input(
+                        type="text" 
+                        placeholder="Số điện thoại"
+                        )
+                    .form-group
+                      label
+                        | Email
+                        span *
+                      input(
+                        type="email" 
+                        placeholder="Email"
+                        )
+                    .form-group
+                      label
+                        | Mật khẩu
+                        span *
+                      .password-wrapper
+                        input(
+                          type="password" 
+                          placeholder="Mật khẩu"
+                          )
+                        i.fa-solid.fa-eye.toggle-password
+                    .form-group
+                      label
+                        | Ngày sinh
+                        span *
+                      input.date-input(type="date")
+                      .gender-group
+                        label.gender-item
+                          input(
+                            type="radio" 
+                            name="gender"
+                            )
+                          span *
+                          | Nam
+                        label.gender-item
+                          input(
+                            type="radio" 
+                            name="gender"
+                            )
+                          | Nữ
+                    button.submit-btn(type="button") ĐĂNG KÝ
+    section.booking-section
+      .container
+        .booking-header
+          h1.booking-title Mua vé xem phim
+          p.booking-subtitle Chọn phim, rạp và suất chiếu phù hợp với bạn
+        .booking-grid
+          .booking-column.booking-column--movie
+            .booking-column-header
+              i.fa-solid.fa-film
+              span Chọn phim
+            .booking-column-body
+              .movie-list
+                .movie-item.active(data-movie="1")
+                  .movie-item-image
+                    img(
+                      alt="Không còn chúng ta" 
+                      src="https://image.tmdb.org/t/p/w500/qhb1qOilapbapxWQn9jtRCMwXJF.jpg"
+                      )
+                  .movie-item-info
+                    .movie-item-name Không còn chúng ta
+                    .movie-item-meta
+                      span.movie-item-genre Tình cảm
+                      span.movie-item-duration 120 phút
+                    .movie-item-rating
+                      span.rating-badge T16
+                .movie-item(data-movie="2")
+                  .movie-item-image
+                    img(
+                      alt="Tài" 
+                      src="https://image.tmdb.org/t/p/w500/gKkl37BQuKTanygYQG1pyYgLVgf.jpg"
+                      )
+                  .movie-item-info
+                    .movie-item-name Tài
+                    .movie-item-meta
+                      span.movie-item-genre Hành động
+                      span.movie-item-duration 101 phút
+                    .movie-item-rating
+                      span.rating-badge T18
+                .movie-item(data-movie="3")
+                  .movie-item-image
+                    img(
+                      alt="Kẻ Trộm Mặt Trăng" 
+                      src="https://image.tmdb.org/t/p/w500/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg"
+                      )
+                  .movie-item-info
+                    .movie-item-name Kẻ Trộm Mặt Trăng
+                    .movie-item-meta
+                      span.movie-item-genre Hoạt hình
+                      span.movie-item-duration 95 phút
+                    .movie-item-rating
+                      span.rating-badge.rating-badge--green P
+                .movie-item(data-movie="4")
+                  .movie-item-image
+                    img(
+                      alt="Mai" 
+                      src="https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg"
+                      )
+                  .movie-item-info
+                    .movie-item-name Mai
+                    .movie-item-meta
+                      span.movie-item-genre Tâm lý
+                      span.movie-item-duration 130 phút
+                    .movie-item-rating
+                      span.rating-badge T16
+                .movie-item(data-movie="5")
+                  .movie-item-image
+                    img(
+                      alt="Đào, Phở và Piano" 
+                      src="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg"
+                      )
+                  .movie-item-info
+                    .movie-item-name Đào, Phở và Piano
+                    .movie-item-meta
+                      span.movie-item-genre Chiến tranh
+                      span.movie-item-duration 125 phút
+                    .movie-item-rating
+                      span.rating-badge T13
+          .booking-column.booking-column--cinema
+            .booking-column-header
+              i.fa-solid.fa-location-dot
+              span Chọn rạp
+            .booking-column-body
+              .cinema-list
+                .cinema-item.active(data-cinema="1")
+                  .cinema-item-icon
+                    i.fa-solid.fa-building
+                  .cinema-item-info
+                    .cinema-item-name LatteCinema Vincom Bà Triệu
+                    .cinema-item-address Tầng 6, Vincom Center, 191 Bà Triệu, Hà Nội
+                .cinema-item(data-cinema="2")
+                  .cinema-item-icon
+                    i.fa-solid.fa-building
+                  .cinema-item-info
+                    .cinema-item-name LatteCinema Times City
+                    .cinema-item-address Tầng B1, TTTM Times City, 458 Minh Khai, Hà Nội
+                .cinema-item(data-cinema="3")
+                  .cinema-item-icon
+                    i.fa-solid.fa-building
+                  .cinema-item-info
+                    .cinema-item-name LatteCinema Aeon Mall Long Biên
+                    .cinema-item-address Tầng 3, AEON Mall Long Biên, Cổ Linh, Hà Nội
+                .cinema-item(data-cinema="4")
+                  .cinema-item-icon
+                    i.fa-solid.fa-building
+                  .cinema-item-info
+                    .cinema-item-name LatteCinema Landmark 81
+                    .cinema-item-address Tầng B1, Landmark 81, Vinhomes Central Park, TP.HCM
+                .cinema-item(data-cinema="5")
+                  .cinema-item-icon
+                    i.fa-solid.fa-building
+                  .cinema-item-info
+                    .cinema-item-name LatteCinema Crescent Mall
+                    .cinema-item-address Tầng 5, Crescent Mall, Quận 7, TP.HCM
+                .cinema-item(data-cinema="6")
+                  .cinema-item-icon
+                    i.fa-solid.fa-building
+                  .cinema-item-info
+                    .cinema-item-name LatteCinema Gigamall Thủ Đức
+                    .cinema-item-address Tầng 6, Gigamall, 240-242 Phạm Văn Đồng, TP.HCM
+          .booking-column.booking-column--showtime
+            .booking-column-header
+              i.fa-solid.fa-clock
+              span Chọn suất chiếu
+            .booking-column-body
+              .showtime-dates
+                .date-tabs
+                  .date-tab.active(data-date="2026-03-09")
+                    span.date-tab-day Hôm nay
+                    span.date-tab-date 09/03
+                  .date-tab(data-date="2026-03-10")
+                    span.date-tab-day Thứ 3
+                    span.date-tab-date 10/03
+                  .date-tab(data-date="2026-03-11")
+                    span.date-tab-day Thứ 4
+                    span.date-tab-date 11/03
+                  .date-tab(data-date="2026-03-12")
+                    span.date-tab-day Thứ 5
+                    span.date-tab-date 12/03
+                  .date-tab(data-date="2026-03-13")
+                    span.date-tab-day Thứ 6
+                    span.date-tab-date 13/03
+                  .date-tab(data-date="2026-03-14")
+                    span.date-tab-day Thứ 7
+                    span.date-tab-date 14/03
+                  .date-tab(data-date="2026-03-15")
+                    span.date-tab-day CN
+                    span.date-tab-date 15/03
+              .showtime-slots
+                .showtime-format
+                  .format-label
+                    span.format-type 2D Phụ đề
+                  .time-slots
+                    button.time-slot.disabled(disabled="") 09:15
+                    button.time-slot.disabled(disabled="") 11:30
+                    button.time-slot.active 14:00
+                    button.time-slot 16:30
+                    button.time-slot 19:00
+                    button.time-slot 21:30
+                .showtime-format
+                  .format-label
+                    span.format-type 2D Lồng tiếng
+                  .time-slots
+                    button.time-slot.disabled(disabled="") 10:00
+                    button.time-slot 15:15
+                    button.time-slot 17:45
+                    button.time-slot 20:15
+                .showtime-format
+                  .format-label
+                    span.format-type IMAX
+                  .time-slots
+                    button.time-slot.disabled(disabled="") 10:30
+                    button.time-slot 13:30
+                    button.time-slot 18:00
+                    button.time-slot 21:00
+              .showtime-legend
+                .legend-item
+                  span.legend-dot.legend-dot--available
+                  span Còn chỗ
+                .legend-item
+                  span.legend-dot.legend-dot--selected
+                  span Đang chọn
+                .legend-item
+                  span.legend-dot.legend-dot--disabled
+                  span Đã qua
+        .booking-summary
+          .summary-info
+            .summary-item
+              span.summary-label Phim:
+              span#summary-movie.summary-value Không còn chúng ta
+            .summary-item
+              span.summary-label Rạp:
+              span#summary-cinema.summary-value LatteCinema Vincom Bà Triệu
+            .summary-item
+              span.summary-label Suất chiếu:
+              span#summary-showtime.summary-value 14:00 - Hôm nay 09/03
+          button.booking-btn
+            span Tiếp tục
+            i.fa-solid.fa-arrow-right
+    footer.footer
+      .container
+        .inner-wrap-1
+          .inner-title Đăng ký ngay để không bỏ lỡ các chương trình của chúng tôi
+          form.inner-form(action="")
+            input(
+              placeholder="Nhập email của bạn..." 
+              type="text"
+              )
+            button Đăng ký ngay
+        .inner-wrap-2
+          ul.inner-links
+            li
+              a(href="index.html") Trang Chủ
+            li
+              a(href="booking.html") Mua vé
+            li
+              a(href="#") Vé của tôi
+            li
+              a(href="cinema.html") Rạp phim
+          ul.inner-socials
+            li
+              a(
+                target="_blank" 
+                href="#"
+                )
+                i.fa-brands.fa-facebook
+            li
+              a(
+                target="_blank" 
+                href="#"
+                )
+                i.fa-brands.fa-x-twitter
+            li
+              a(
+                target="_blank" 
+                href="#"
+                )
+                i.fa-brands.fa-instagram
+            li
+              a(
+                target="_blank" 
+                href="#"
+                )
+                i.fa-brands.fa-youtube
+        .inner-wrap-3
+          .inner-copyright © 2026 LatteCinema. All rights reserved.
+          a.inner-logo(href="index.html")
+            img(
+              alt="LatteCinema" 
+              src="assets/images/logo1.svg"
+              )
+          ul.inner-links
+            li
+              a(href="#") Điều khoản dịch vụ
+            li
+              a(href="#") Chính sách bảo mật
+    ul.box-contact
+      li
+        a(
+          target="_blank" 
+          href="#"
+          )
+          i.fa-brands.fa-facebook-f
+      li
+        a(
+          target="_blank" 
+          href="#"
+          )
+          i.fa-brands.fa-instagram
+      li
+        a(
+          target="_blank" 
+          href="#"
+          )
+          i.fa-brands.fa-whatsapp
+      li
+        a(
+          target="_blank" 
+          href="#"
+          )
+          i.fa-brands.fa-youtube
