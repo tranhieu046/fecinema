@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chọn ghế - HTML tĩnh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles/seat-selection.css" />
+</head>
+<body>
+    <main class="seat-selection-page">
+        <div class="seat-selection-inner">
+            <header class="seat-selection-inner-header">
+                <h1 class="seat-selection-inner-title">Chọn ghế ngồi</h1>
+                <p class="seat-selection-inner-subtitle">Lật Mặt 8: Vòng Tay Nắng - CGV Vincom Thủ Đức</p>
+            </header>
+
+            <div class="seat-selection-inner-steps">
+                <div class="seat-selection-inner-step">
+                    <span class="seat-selection-inner-step-num">01.</span>
+                    <span class="seat-selection-inner-step-label">Lựa Chọn Phim</span>
+                    <span class="seat-selection-inner-step-arrow">›</span>
+                </div>
+                <div class="seat-selection-inner-step">
+                    <span class="seat-selection-inner-step-num">02.</span>
+                    <span class="seat-selection-inner-step-label">Chọn Lịch Chiếu</span>
+                    <span class="seat-selection-inner-step-arrow">›</span>
+                </div>
+                <div class="seat-selection-inner-step seat-selection-inner-step-active">
+                    <span class="seat-selection-inner-step-num">03.</span>
+                    <span class="seat-selection-inner-step-label">Chọn Ghế Ngồi</span>
+                    <span class="seat-selection-inner-step-arrow">›</span>
+                </div>
+                <div class="seat-selection-inner-step">
+                    <span class="seat-selection-inner-step-num">04.</span>
+                    <span class="seat-selection-inner-step-label">Thanh Toán</span>
+                </div>
+            </div>
+
+            <section class="seat-selection-inner-layout">
+                <aside class="seat-selection-inner-sidebar">
+                    <div class="seat-selection-inner-legend">
+                        <div class="seat-selection-inner-legend-item"><span class="seat-selection-inner-legend-dot seat-selection-inner-legend-dot-standard"></span> Ghế thường</div>
+                        <div class="seat-selection-inner-legend-item"><span class="seat-selection-inner-legend-dot seat-selection-inner-legend-dot-vip"></span> Ghế VIP</div>
+                        <div class="seat-selection-inner-legend-item"><span class="seat-selection-inner-legend-dot seat-selection-inner-legend-dot-selected"></span> Đã chọn</div>
+                        <div class="seat-selection-inner-legend-item"><span class="seat-selection-inner-legend-dot seat-selection-inner-legend-dot-booked"></span> Đã bán</div>
+                    </div>
+
+                    <div class="seat-selection-inner-details">
+                        <div class="seat-selection-inner-detail-row"><span class="seat-selection-inner-detail-icon">📍</span><span>CGV Vincom Thủ Đức</span></div>
+                        <div class="seat-selection-inner-detail-row"><span class="seat-selection-inner-detail-icon">🗓</span><span>Suất #1024 · 19:30</span></div>
+                    </div>
+
+                    <div class="seat-selection-inner-summary-block">
+                        <div class="seat-selection-inner-summary-row">
+                            <span class="seat-selection-inner-summary-label">Ghế thường × 2<br /><span class="seat-selection-inner-summary-seats">B4, B5</span></span>
+                            <span class="seat-selection-inner-summary-price">140.000đ</span>
+                        </div>
+                    </div>
+
+                    <div class="seat-selection-inner-summary-block">
+                        <div class="seat-selection-inner-summary-row">
+                            <span class="seat-selection-inner-summary-label">Ghế VIP × 2<br /><span class="seat-selection-inner-summary-seats">D6, D7</span></span>
+                            <span class="seat-selection-inner-summary-price">180.000đ</span>
+                        </div>
+                    </div>
+
+                    <div class="seat-selection-inner-total">
+                        <span class="seat-selection-inner-total-label">Tổng:</span>
+                        <span class="seat-selection-inner-total-price">320.000đ</span>
+                    </div>
+
+                    <button class="seat-selection-inner-sidebar-back" type="button">← QUAY LẠI</button>
+                </aside>
+
+                <div class="seat-selection-inner-main">
+                    <div class="seat-selection-inner-screen-wrap">
+                        <div class="seat-selection-inner-screen">MÀN HÌNH</div>
+                        <div class="seat-selection-inner-screen-shadow"></div>
+                    </div>
+
+                    <div class="seat-selection-inner-grid-wrap">
+                        <div class="seat-selection-inner-row-labels">
+                            <span class="seat-selection-inner-row-label">A</span>
+                            <span class="seat-selection-inner-row-label">B</span>
+                            <span class="seat-selection-inner-row-label">C</span>
+                            <span class="seat-selection-inner-row-label">D</span>
+                            <span class="seat-selection-inner-row-label">E</span>
+                            <span class="seat-selection-inner-row-label">F</span>
+                            <span class="seat-selection-inner-row-label">G</span>
+                            <span class="seat-selection-inner-row-label">H</span>
+                        </div>
+
+                        <div class="seat-selection-inner-grid">
+                            <div class="seat-selection-inner-seat-row">
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-booked" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-booked" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                            </div>
+                            <div class="seat-selection-inner-seat-row">
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-selected" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-selected" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-booked" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                            </div>
+                            <div class="seat-selection-inner-seat-row">
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                            </div>
+                            <div class="seat-selection-inner-seat-row">
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-selected" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-selected" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-booked" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                            </div>
+                            <div class="seat-selection-inner-seat-row">
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-vip" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                            </div>
+                            <div class="seat-selection-inner-seat-row">
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-couple" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-couple" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-couple" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-couple" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                            </div>
+                            <div class="seat-selection-inner-seat-row">
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-booked" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                            </div>
+                            <div class="seat-selection-inner-seat-row">
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-booked" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                                <button class="seat-selection-inner-seat seat-selection-inner-seat-standard" type="button"></button>
+                            </div>
+                        </div>
+
+                        <div class="seat-selection-inner-col-labels">
+                            <span class="seat-selection-inner-col-label">1</span>
+                            <span class="seat-selection-inner-col-label">2</span>
+                            <span class="seat-selection-inner-col-label">3</span>
+                            <span class="seat-selection-inner-col-label">4</span>
+                            <span class="seat-selection-inner-col-label">5</span>
+                            <span class="seat-selection-inner-col-label">6</span>
+                            <span class="seat-selection-inner-col-label">7</span>
+                            <span class="seat-selection-inner-col-label">8</span>
+                            <span class="seat-selection-inner-col-label">9</span>
+                            <span class="seat-selection-inner-col-label">10</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="seat-selection-inner-action-bar">
+                <button class="seat-selection-inner-action-back" type="button">← Quay lại</button>
+                <button class="seat-selection-inner-action-continue" type="button">TIẾP TỤC →</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

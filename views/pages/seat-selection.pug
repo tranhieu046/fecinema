@@ -1,0 +1,218 @@
+doctype html
+html(lang="vi")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Chọn ghế - LatteCinema
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css")
+    link(rel="stylesheet" href="assets/css/style.css")
+    script(defer="" src="assets/Js/main.js")
+  body
+    .top-header
+      .container
+        .inner-wrap
+          .inner-item
+            i.fa-solid.fa-phone
+            | Hotline: 0123.456.789
+          .inner-item
+            i.fa-solid.fa-envelope
+            | contact@lattecinema.com
+    header.header
+      .container
+        .inner-wrap
+          a.inner-logo(href="index.html")
+            img(src="assets/images/logo1.svg" alt="LatteCinema")
+          nav.inner-menu
+            ul
+              li
+                a(href="index.html") Phim
+                ul
+                  li
+                    a(href="index.html#phim-dang-chieu") Phim đang chiếu
+                  li
+                    a(href="index.html#phim-sap-chieu") Phim sắp chiếu
+              li
+                a.inner-active(href="booking.html") Mua vé
+              li
+                a(href="my-tickets.html") Vé của tôi
+              li
+                a(href="cinema.html") Rạp phim
+          .inner-login
+            i.fa-solid.fa-circle-user
+            #openBtn Đăng nhập/Đăng kí
+            #registerModal.hidden
+              #overlay
+              .modal-content
+                span#closeBtn ×
+                .modal-header
+                  #loginTab.tab.active ĐĂNG NHẬP
+                  #registerTab.tab ĐĂNG KÝ
+                .modal-body
+                  form#loginForm
+                    .form-group
+                      label Nhập số điện thoại
+                      input(type="text" placeholder="Số điện thoại")
+                    label Mật khẩu
+                    .password-wrapper
+                      input(type="password" placeholder="Mật khẩu")
+                      i.fa-solid.fa-eye.toggle-password
+                    button.submit-btn(type="button") ĐĂNG NHẬP
+                  form#registerForm.hidden
+                    .form-group
+                      label
+                        | Tên
+                        span *
+                      input(type="text" placeholder="Tên")
+                    .form-group
+                      label
+                        | Số điện thoại
+                        span *
+                      input(type="text" placeholder="Số điện thoại")
+                    .form-group
+                      label
+                        | Email
+                        span *
+                      input(type="email" placeholder="Email")
+                    .form-group
+                      label
+                        | Mật khẩu
+                        span *
+                      .password-wrapper
+                        input(type="password" placeholder="Mật khẩu")
+                        i.fa-solid.fa-eye.toggle-password
+                    .form-group
+                      label
+                        | Ngày sinh
+                        span *
+                      input.date-input(type="date")
+                      .gender-group
+                        label.gender-item
+                          input(type="radio" name="gender")
+                          span *
+                          | Nam
+                        label.gender-item
+                          input(type="radio" name="gender")
+                          | Nữ
+                    button.submit-btn(type="button") ĐĂNG KÝ
+    section.seat-selection-page
+      .container
+        .seat-selection-inner
+          header.seat-selection-inner-header
+            h1.seat-selection-inner-title Chọn ghế ngồi
+            p#seat-selection-subtitle.seat-selection-inner-subtitle Hoàn tất bước chọn ghế cho suất chiếu của bạn
+          .seat-selection-inner-steps
+            .seat-selection-inner-step
+              span.seat-selection-inner-step-num 01.
+              span.seat-selection-inner-step-label Lựa chọn phim
+              span.seat-selection-inner-step-arrow ›
+            .seat-selection-inner-step
+              span.seat-selection-inner-step-num 02.
+              span.seat-selection-inner-step-label Chọn lịch chiếu
+              span.seat-selection-inner-step-arrow ›
+            .seat-selection-inner-step.seat-selection-inner-step-active
+              span.seat-selection-inner-step-num 03.
+              span.seat-selection-inner-step-label Chọn ghế ngồi
+              span.seat-selection-inner-step-arrow ›
+            .seat-selection-inner-step
+              span.seat-selection-inner-step-num 04.
+              span.seat-selection-inner-step-label Thanh toán
+          section.seat-selection-inner-layout
+            aside.seat-selection-inner-sidebar
+              .seat-selection-inner-legend
+                .seat-selection-inner-legend-item
+                  span.seat-selection-inner-legend-dot.seat-selection-inner-legend-dot-standard
+                  | Ghế thường
+                .seat-selection-inner-legend-item
+                  span.seat-selection-inner-legend-dot.seat-selection-inner-legend-dot-vip
+                  | Ghế VIP
+                .seat-selection-inner-legend-item
+                  span.seat-selection-inner-legend-dot.seat-selection-inner-legend-dot-couple
+                  | Ghế đôi
+                .seat-selection-inner-legend-item
+                  span.seat-selection-inner-legend-dot.seat-selection-inner-legend-dot-selected
+                  | Đã chọn
+                .seat-selection-inner-legend-item
+                  span.seat-selection-inner-legend-dot.seat-selection-inner-legend-dot-booked
+                  | Đã bán
+              .seat-selection-inner-details
+                .seat-selection-inner-detail-row
+                  span.seat-selection-inner-detail-icon
+                    i.fa-solid.fa-film
+                  span#seat-selection-movie-name Không còn chúng ta
+                .seat-selection-inner-detail-row
+                  span.seat-selection-inner-detail-icon
+                    i.fa-solid.fa-location-dot
+                  span#seat-selection-cinema-name LatteCinema Vincom Bà Triệu
+                .seat-selection-inner-detail-row
+                  span.seat-selection-inner-detail-icon
+                    i.fa-solid.fa-calendar-days
+                  span#seat-selection-showtime 14:00 - Hôm nay 09/03
+              #seat-selection-summary-items.seat-selection-inner-summary-list
+              .seat-selection-inner-total
+                span.seat-selection-inner-total-label Tổng:
+                span#seat-selection-total-price.seat-selection-inner-total-price 0đ
+              a.seat-selection-inner-sidebar-back(href="booking.html")
+                | ← QUAY LẠI
+            .seat-selection-inner-main
+              .seat-selection-inner-screen-wrap
+                .seat-selection-inner-screen MÀN HÌNH
+                .seat-selection-inner-screen-shadow
+              .seat-selection-inner-grid-wrap
+                #seat-selection-row-labels.seat-selection-inner-row-labels
+                #seat-selection-grid.seat-selection-inner-grid
+                #seat-selection-col-labels.seat-selection-inner-col-labels
+              .seat-selection-inner-action-bar
+                a.seat-selection-inner-action-back(href="booking.html") ← Quay lại chọn suất
+                button#seat-selection-continue.seat-selection-inner-action-continue(type="button") Tiếp tục thanh toán
+    footer.footer
+      .container
+        .inner-wrap-1
+          .inner-title Đăng ký ngay để không bỏ lỡ các chương trình của chúng tôi
+          form.inner-form(action="")
+            input(type="text" placeholder="Nhập email của bạn...")
+            button Đăng ký ngay
+        .inner-wrap-2
+          ul.inner-links
+            li
+              a(href="index.html") Trang Chủ
+            li
+              a(href="booking.html") Mua vé
+            li
+              a(href="my-tickets.html") Vé của tôi
+            li
+              a(href="cinema.html") Rạp phim
+          ul.inner-socials
+            li
+              a(target="_blank" href="#")
+                i.fa-brands.fa-facebook
+            li
+              a(target="_blank" href="#")
+                i.fa-brands.fa-x-twitter
+            li
+              a(target="_blank" href="#")
+                i.fa-brands.fa-instagram
+            li
+              a(target="_blank" href="#")
+                i.fa-brands.fa-youtube
+        .inner-wrap-3
+          .inner-copyright © 2026 LatteCinema. All rights reserved.
+          a.inner-logo(href="index.html")
+            img(src="assets/images/logo1.svg" alt="LatteCinema")
+          ul.inner-links
+            li
+              a(href="#") Điều khoản dịch vụ
+            li
+              a(href="#") Chính sách bảo mật
+    ul.box-contact
+      li
+        a(target="_blank" href="#")
+          i.fa-brands.fa-facebook-f
+      li
+        a(target="_blank" href="#")
+          i.fa-brands.fa-instagram
+      li
+        a(target="_blank" href="#")
+          i.fa-brands.fa-whatsapp
+      li
+        a(target="_blank" href="#")
+          i.fa-brands.fa-youtube

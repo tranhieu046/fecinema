@@ -6,7 +6,7 @@
     <title>Mua vé - LatteCinema</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script defer="" src="assets/js/main.js"></script>
+    <script defer="" src="assets/Js/main.js"></script>
   </head>
   <body>
     <div class="top-header">
@@ -29,7 +29,7 @@
                 </ul>
               </li>
               <li><a class="inner-active" href="booking.html">Mua vé</a></li>
-              <li><a href="#">Vé của tôi</a></li>
+              <li><a href="my-tickets.html">Vé của tôi</a></li>
               <li><a href="cinema.html">Rạp phim</a></li>
             </ul>
           </nav>
@@ -105,7 +105,7 @@
             <div class="booking-column-header"><i class="fa-solid fa-film"></i><span>Chọn phim</span></div>
             <div class="booking-column-body">
               <div class="movie-list">
-                <div class="movie-item active" data-movie="1">
+                <div class="movie-item active" data-duration="120 phút" data-genre="Tình cảm" data-movie="1" data-poster="https://image.tmdb.org/t/p/w500/qhb1qOilapbapxWQn9jtRCMwXJF.jpg" data-rating="T16">
                   <div class="movie-item-image"><img alt="Không còn chúng ta" src="https://image.tmdb.org/t/p/w500/qhb1qOilapbapxWQn9jtRCMwXJF.jpg"></div>
                   <div class="movie-item-info">
                     <div class="movie-item-name">Không còn chúng ta</div>
@@ -113,7 +113,7 @@
                     <div class="movie-item-rating"><span class="rating-badge">T16</span></div>
                   </div>
                 </div>
-                <div class="movie-item" data-movie="2">
+                <div class="movie-item" data-duration="101 phút" data-genre="Hành động" data-movie="2" data-poster="https://image.tmdb.org/t/p/w500/gKkl37BQuKTanygYQG1pyYgLVgf.jpg" data-rating="T18">
                   <div class="movie-item-image"><img alt="Tài" src="https://image.tmdb.org/t/p/w500/gKkl37BQuKTanygYQG1pyYgLVgf.jpg"></div>
                   <div class="movie-item-info">
                     <div class="movie-item-name">Tài</div>
@@ -121,7 +121,7 @@
                     <div class="movie-item-rating"><span class="rating-badge">T18</span></div>
                   </div>
                 </div>
-                <div class="movie-item" data-movie="3">
+                <div class="movie-item" data-duration="95 phút" data-genre="Hoạt hình" data-movie="3" data-poster="https://image.tmdb.org/t/p/w500/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg" data-rating="P">
                   <div class="movie-item-image"><img alt="Kẻ Trộm Mặt Trăng" src="https://image.tmdb.org/t/p/w500/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg"></div>
                   <div class="movie-item-info">
                     <div class="movie-item-name">Kẻ Trộm Mặt Trăng</div>
@@ -129,7 +129,7 @@
                     <div class="movie-item-rating"><span class="rating-badge rating-badge--green">P</span></div>
                   </div>
                 </div>
-                <div class="movie-item" data-movie="4">
+                <div class="movie-item" data-duration="130 phút" data-genre="Tâm lý" data-movie="4" data-poster="https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg" data-rating="T16">
                   <div class="movie-item-image"><img alt="Mai" src="https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg"></div>
                   <div class="movie-item-info">
                     <div class="movie-item-name">Mai</div>
@@ -137,7 +137,7 @@
                     <div class="movie-item-rating"><span class="rating-badge">T16</span></div>
                   </div>
                 </div>
-                <div class="movie-item" data-movie="5">
+                <div class="movie-item" data-duration="125 phút" data-genre="Chiến tranh" data-movie="5" data-poster="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg" data-rating="T13">
                   <div class="movie-item-image"><img alt="Đào, Phở và Piano" src="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg"></div>
                   <div class="movie-item-info">
                     <div class="movie-item-name">Đào, Phở và Piano</div>
@@ -256,7 +256,7 @@
             <div class="summary-item"><span class="summary-label">Rạp:</span><span class="summary-value" id="summary-cinema">LatteCinema Vincom Bà Triệu</span></div>
             <div class="summary-item"><span class="summary-label">Suất chiếu:</span><span class="summary-value" id="summary-showtime">14:00 - Hôm nay 09/03</span></div>
           </div>
-          <button class="booking-btn"><span>Tiếp tục</span><i class="fa-solid fa-arrow-right"></i></button>
+          <button class="booking-btn" id="booking-continue-btn" type="button"><span>Tiếp tục</span><i class="fa-solid fa-arrow-right"></i></button>
         </div>
       </div>
     </section>
@@ -273,7 +273,7 @@
           <ul class="inner-links">
             <li><a href="index.html">Trang Chủ</a></li>
             <li><a href="booking.html">Mua vé</a></li>
-            <li><a href="#">Vé của tôi</a></li>
+            <li><a href="my-tickets.html">Vé của tôi</a></li>
             <li><a href="cinema.html">Rạp phim</a></li>
           </ul>
           <ul class="inner-socials">

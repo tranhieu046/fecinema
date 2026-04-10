@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanh toán - HTML tĩnh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles/payment.css" />
+</head>
+<body>
+    <main class="payment-page">
+        <div class="payment-inner">
+            <header class="payment-inner-header">
+                <h1 class="payment-inner-title">Thanh Toán</h1>
+                <p class="payment-inner-subtitle">Lật Mặt 8: Vòng Tay Nắng - CGV Vincom Thủ Đức</p>
+            </header>
+
+            <section class="payment-inner-section">
+                <div class="payment-inner-steps">
+                    <div class="payment-inner-step">
+                        <span class="payment-inner-step-num">01.</span>
+                        <span class="payment-inner-step-label">Phim Hot</span>
+                        <span class="payment-inner-step-arrow">›</span>
+                    </div>
+                    <div class="payment-inner-step">
+                        <span class="payment-inner-step-num">02.</span>
+                        <span class="payment-inner-step-label">Chọn Rạp Chiếu</span>
+                        <span class="payment-inner-step-arrow">›</span>
+                    </div>
+                    <div class="payment-inner-step">
+                        <span class="payment-inner-step-num">03.</span>
+                        <span class="payment-inner-step-label">Chọn Ghế Ngồi</span>
+                        <span class="payment-inner-step-arrow">›</span>
+                    </div>
+                    <div class="payment-inner-step payment-inner-step-active">
+                        <span class="payment-inner-step-num">04.</span>
+                        <span class="payment-inner-step-label">Thanh Toán</span>
+                    </div>
+                </div>
+
+                <section class="payment-inner-layout">
+                    <div class="payment-inner-booking-panel">
+                        <h2 class="payment-inner-section-title">Thông Tin Đặt Vé</h2>
+
+                        <div class="payment-inner-movie-card">
+                            <img class="payment-inner-movie-poster" src="../src/assets/images/poster2.png" alt="Lật Mặt 8" />
+                            <div class="payment-inner-movie-detail">
+                                <h3 class="payment-inner-movie-name">Lật Mặt 8: Vòng Tay Nắng</h3>
+                                <div class="payment-inner-movie-row"><span class="payment-inner-movie-icon">📍</span><span>CGV Vincom Thủ Đức</span></div>
+                                <div class="payment-inner-movie-row"><span class="payment-inner-movie-icon">🗓</span><span>19:30 · 10/04/2026 · 2D Phụ đề</span></div>
+                                <div class="payment-inner-movie-row">
+                                    <span class="payment-inner-seat-badge">Ghế: B4, B5, D6, D7</span>
+                                    <span class="payment-inner-seat-count">4 vé</span>
+                                </div>
+                                <div class="payment-inner-total-row">
+                                    <span class="payment-inner-total-label">Tổng tiền:</span>
+                                    <span class="payment-inner-total-price">320.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment-inner-countdown">
+                            <span class="payment-inner-countdown-icon">⏱</span>
+                            <span>Thời gian giữ ghế:</span>
+                            <span class="payment-inner-countdown-time">09:48</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-inner-method-panel">
+                        <h2 class="payment-inner-section-title">Phương Thức Thanh Toán</h2>
+
+                        <div class="payment-inner-momo-card">
+                            <div class="payment-inner-momo-header">
+                                <span class="payment-inner-brand payment-inner-brand-momo">MoMo</span>
+                                <span class="payment-inner-momo-label">Ví MoMo</span>
+                                <span class="payment-inner-momo-check">✔</span>
+                            </div>
+                            <p class="payment-inner-momo-desc">Thanh toán nhanh chóng qua ví MoMo. Bạn sẽ được chuyển sang trang thanh toán để hoàn tất đơn hàng.</p>
+                            <button class="payment-inner-momo-button" type="button">👛 THANH TOÁN 320.000đ</button>
+                        </div>
+
+                        <div class="payment-inner-momo-note">
+                            <span class="payment-inner-momo-note-icon">🛡</span>
+                            <span>Giao dịch được mã hóa và bảo mật bởi MoMo</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="payment-inner-action-bar">
+                    <button class="payment-inner-action-back" type="button">← QUAY LẠI</button>
+                    <button class="payment-inner-action-submit" type="button">THANH TOÁN MOMO →</button>
+                </div>
+
+                <section class="payment-inner-features">
+                    <div class="payment-inner-feature-item">
+                        <span class="payment-inner-feature-icon">⚡</span>
+                        <span class="payment-inner-feature-label">Đặt vé nhanh chóng</span>
+                    </div>
+                    <div class="payment-inner-feature-item">
+                        <span class="payment-inner-feature-icon">🏷</span>
+                        <span class="payment-inner-feature-label">Giá vé ưu đãi</span>
+                    </div>
+                    <div class="payment-inner-feature-item">
+                        <span class="payment-inner-feature-icon">🛡</span>
+                        <span class="payment-inner-feature-label">Thanh toán an toàn</span>
+                    </div>
+                    <div class="payment-inner-feature-item">
+                        <span class="payment-inner-feature-icon">☎</span>
+                        <span class="payment-inner-feature-label">Hỗ trợ 24/7</span>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

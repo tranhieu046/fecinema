@@ -1,0 +1,174 @@
+doctype html
+html(lang="vi")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Vé của tôi - LatteCinema
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css")
+    link(rel="stylesheet" href="assets/css/style.css")
+    script(defer="" src="assets/Js/main.js")
+  body
+    .top-header
+      .container
+        .inner-wrap
+          .inner-item
+            i.fa-solid.fa-phone
+            | Hotline: 0123.456.789
+          .inner-item
+            i.fa-solid.fa-envelope
+            | contact@lattecinema.com
+    header.header
+      .container
+        .inner-wrap
+          a.inner-logo(href="index.html")
+            img(src="assets/images/logo1.svg" alt="LatteCinema")
+          nav.inner-menu
+            ul
+              li
+                a(href="index.html") Phim
+                ul
+                  li
+                    a(href="index.html#phim-dang-chieu") Phim đang chiếu
+                  li
+                    a(href="index.html#phim-sap-chieu") Phim sắp chiếu
+              li
+                a(href="booking.html") Mua vé
+              li
+                a.inner-active(href="my-tickets.html") Vé của tôi
+              li
+                a(href="cinema.html") Rạp phim
+          .inner-login
+            i.fa-solid.fa-circle-user
+            #openBtn Đăng nhập/Đăng kí
+            #registerModal.hidden
+              #overlay
+              .modal-content
+                span#closeBtn ×
+                .modal-header
+                  #loginTab.tab.active ĐĂNG NHẬP
+                  #registerTab.tab ĐĂNG KÝ
+                .modal-body
+                  form#loginForm
+                    .form-group
+                      label Nhập số điện thoại
+                      input(type="text" placeholder="Số điện thoại")
+                    label Mật khẩu
+                    .password-wrapper
+                      input(type="password" placeholder="Mật khẩu")
+                      i.fa-solid.fa-eye.toggle-password
+                    button.submit-btn(type="button") ĐĂNG NHẬP
+                  form#registerForm.hidden
+                    .form-group
+                      label
+                        | Tên
+                        span *
+                      input(type="text" placeholder="Tên")
+                    .form-group
+                      label
+                        | Số điện thoại
+                        span *
+                      input(type="text" placeholder="Số điện thoại")
+                    .form-group
+                      label
+                        | Email
+                        span *
+                      input(type="email" placeholder="Email")
+                    .form-group
+                      label
+                        | Mật khẩu
+                        span *
+                      .password-wrapper
+                        input(type="password" placeholder="Mật khẩu")
+                        i.fa-solid.fa-eye.toggle-password
+                    .form-group
+                      label
+                        | Ngày sinh
+                        span *
+                      input.date-input(type="date")
+                      .gender-group
+                        label.gender-item
+                          input(type="radio" name="gender")
+                          span *
+                          | Nam
+                        label.gender-item
+                          input(type="radio" name="gender")
+                          | Nữ
+                    button.submit-btn(type="button") ĐĂNG KÝ
+    section.my-tickets-page
+      .my-tickets-inner-section
+        .my-tickets-inner-container
+          header.my-tickets-inner-header
+            h1.my-tickets-inner-title Vé của tôi
+            p.my-tickets-inner-subtitle Quản lý vé xem phim và lịch sử đặt vé của bạn
+          .my-tickets-inner-toolbar
+            .my-tickets-inner-tabs
+              button.my-tickets-inner-tab.my-tickets-inner-tab-active(type="button" data-ticket-filter="all") Tất Cả
+              button.my-tickets-inner-tab(type="button" data-ticket-filter="paid") Đã Thanh Toán
+              button.my-tickets-inner-tab(type="button" data-ticket-filter="confirmed") Đã Xác Nhận
+              button.my-tickets-inner-tab(type="button" data-ticket-filter="pending") Chờ Xử Lý
+              button.my-tickets-inner-tab(type="button" data-ticket-filter="cancelled") Đã Hủy
+            .my-tickets-inner-toolbar-right
+              .my-tickets-inner-search
+                span.my-tickets-inner-search-icon
+                  i.fa-solid.fa-magnifying-glass
+                input#my-tickets-search.my-tickets-inner-search-input(type="text" value="" placeholder="Tìm phim, mã vé, rạp...")
+              button#my-tickets-reload.my-tickets-inner-reload(type="button")
+                i.fa-solid.fa-rotate-right
+          #my-tickets-list.my-tickets-inner-list
+          #my-tickets-empty.my-tickets-empty.hidden
+            i.fa-solid.fa-ticket
+            h3 Chưa có vé phù hợp
+            p Hãy hoàn tất một giao dịch demo hoặc thay đổi bộ lọc để xem danh sách vé.
+            a.my-tickets-empty-link(href="booking.html") Đặt vé ngay
+    footer.footer
+      .container
+        .inner-wrap-1
+          .inner-title Đăng ký ngay để không bỏ lỡ các chương trình của chúng tôi
+          form.inner-form(action="")
+            input(type="text" placeholder="Nhập email của bạn...")
+            button Đăng ký ngay
+        .inner-wrap-2
+          ul.inner-links
+            li
+              a(href="index.html") Trang Chủ
+            li
+              a(href="booking.html") Mua vé
+            li
+              a(href="my-tickets.html") Vé của tôi
+            li
+              a(href="cinema.html") Rạp phim
+          ul.inner-socials
+            li
+              a(target="_blank" href="#")
+                i.fa-brands.fa-facebook
+            li
+              a(target="_blank" href="#")
+                i.fa-brands.fa-x-twitter
+            li
+              a(target="_blank" href="#")
+                i.fa-brands.fa-instagram
+            li
+              a(target="_blank" href="#")
+                i.fa-brands.fa-youtube
+        .inner-wrap-3
+          .inner-copyright © 2026 LatteCinema. All rights reserved.
+          a.inner-logo(href="index.html")
+            img(src="assets/images/logo1.svg" alt="LatteCinema")
+          ul.inner-links
+            li
+              a(href="#") Điều khoản dịch vụ
+            li
+              a(href="#") Chính sách bảo mật
+    ul.box-contact
+      li
+        a(target="_blank" href="#")
+          i.fa-brands.fa-facebook-f
+      li
+        a(target="_blank" href="#")
+          i.fa-brands.fa-instagram
+      li
+        a(target="_blank" href="#")
+          i.fa-brands.fa-whatsapp
+      li
+        a(target="_blank" href="#")
+          i.fa-brands.fa-youtube

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chọn ghế - LatteCinema</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script defer="" src="assets/Js/main.js"></script>
+  </head>
+  <body>
+    <div class="top-header">
+      <div class="container">
+        <div class="inner-wrap">
+          <div class="inner-item"><i class="fa-solid fa-phone"></i>Hotline: 0123.456.789</div>
+          <div class="inner-item"><i class="fa-solid fa-envelope"></i>contact@lattecinema.com</div>
+        </div>
+      </div>
+    </div>
+    <header class="header">
+      <div class="container">
+        <div class="inner-wrap"><a class="inner-logo" href="index.html"><img src="assets/images/logo1.svg" alt="LatteCinema"></a>
+          <nav class="inner-menu">
+            <ul>
+              <li><a href="index.html">Phim</a>
+                <ul>
+                  <li><a href="index.html#phim-dang-chieu">Phim đang chiếu</a></li>
+                  <li><a href="index.html#phim-sap-chieu">Phim sắp chiếu</a></li>
+                </ul>
+              </li>
+              <li><a class="inner-active" href="booking.html">Mua vé</a></li>
+              <li><a href="my-tickets.html">Vé của tôi</a></li>
+              <li><a href="cinema.html">Rạp phim</a></li>
+            </ul>
+          </nav>
+          <div class="inner-login"><i class="fa-solid fa-circle-user"></i>
+            <div id="openBtn">Đăng nhập/Đăng kí</div>
+            <div class="hidden" id="registerModal">
+              <div id="overlay"></div>
+              <div class="modal-content"><span id="closeBtn">×</span>
+                <div class="modal-header">
+                  <div class="tab active" id="loginTab">ĐĂNG NHẬP</div>
+                  <div class="tab" id="registerTab">ĐĂNG KÝ</div>
+                </div>
+                <div class="modal-body">
+                  <form id="loginForm">
+                    <div class="form-group">
+                      <label>Nhập số điện thoại</label>
+                      <input type="text" placeholder="Số điện thoại">
+                    </div>
+                    <label>Mật khẩu</label>
+                    <div class="password-wrapper">
+                      <input type="password" placeholder="Mật khẩu"><i class="fa-solid fa-eye toggle-password"></i>
+                    </div>
+                    <button class="submit-btn" type="button">ĐĂNG NHẬP</button>
+                  </form>
+                  <form class="hidden" id="registerForm">
+                    <div class="form-group">
+                      <label>Tên<span>*</span></label>
+                      <input type="text" placeholder="Tên">
+                    </div>
+                    <div class="form-group">
+                      <label>Số điện thoại<span>*</span></label>
+                      <input type="text" placeholder="Số điện thoại">
+                    </div>
+                    <div class="form-group">
+                      <label>Email<span>*</span></label>
+                      <input type="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                      <label>Mật khẩu<span>*</span></label>
+                      <div class="password-wrapper">
+                        <input type="password" placeholder="Mật khẩu"><i class="fa-solid fa-eye toggle-password"></i>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Ngày sinh<span>*</span></label>
+                      <input class="date-input" type="date">
+                      <div class="gender-group">
+                        <label class="gender-item">
+                          <input type="radio" name="gender"><span>*</span>Nam
+                        </label>
+                        <label class="gender-item">
+                          <input type="radio" name="gender">Nữ
+                        </label>
+                      </div>
+                    </div>
+                    <button class="submit-btn" type="button">ĐĂNG KÝ</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="seat-selection-page">
+      <div class="container">
+        <div class="seat-selection-inner">
+          <header class="seat-selection-inner-header">
+            <h1 class="seat-selection-inner-title">Chọn ghế ngồi</h1>
+            <p class="seat-selection-inner-subtitle" id="seat-selection-subtitle">Hoàn tất bước chọn ghế cho suất chiếu của bạn</p>
+          </header>
+          <div class="seat-selection-inner-steps">
+            <div class="seat-selection-inner-step"><span class="seat-selection-inner-step-num">01.</span><span class="seat-selection-inner-step-label">Lựa chọn phim</span><span class="seat-selection-inner-step-arrow">›</span></div>
+            <div class="seat-selection-inner-step"><span class="seat-selection-inner-step-num">02.</span><span class="seat-selection-inner-step-label">Chọn lịch chiếu</span><span class="seat-selection-inner-step-arrow">›</span></div>
+            <div class="seat-selection-inner-step seat-selection-inner-step-active"><span class="seat-selection-inner-step-num">03.</span><span class="seat-selection-inner-step-label">Chọn ghế ngồi</span><span class="seat-selection-inner-step-arrow">›</span></div>
+            <div class="seat-selection-inner-step"><span class="seat-selection-inner-step-num">04.</span><span class="seat-selection-inner-step-label">Thanh toán</span></div>
+          </div>
+          <section class="seat-selection-inner-layout">
+            <aside class="seat-selection-inner-sidebar">
+              <div class="seat-selection-inner-legend">
+                <div class="seat-selection-inner-legend-item"><span class="seat-selection-inner-legend-dot seat-selection-inner-legend-dot-standard"></span>Ghế thường</div>
+                <div class="seat-selection-inner-legend-item"><span class="seat-selection-inner-legend-dot seat-selection-inner-legend-dot-vip"></span>Ghế VIP</div>
+                <div class="seat-selection-inner-legend-item"><span class="seat-selection-inner-legend-dot seat-selection-inner-legend-dot-couple"></span>Ghế đôi</div>
+                <div class="seat-selection-inner-legend-item"><span class="seat-selection-inner-legend-dot seat-selection-inner-legend-dot-selected"></span>Đã chọn</div>
+                <div class="seat-selection-inner-legend-item"><span class="seat-selection-inner-legend-dot seat-selection-inner-legend-dot-booked"></span>Đã bán</div>
+              </div>
+              <div class="seat-selection-inner-details">
+                <div class="seat-selection-inner-detail-row"><span class="seat-selection-inner-detail-icon"><i class="fa-solid fa-film"></i></span><span id="seat-selection-movie-name">Không còn chúng ta</span></div>
+                <div class="seat-selection-inner-detail-row"><span class="seat-selection-inner-detail-icon"><i class="fa-solid fa-location-dot"></i></span><span id="seat-selection-cinema-name">LatteCinema Vincom Bà Triệu</span></div>
+                <div class="seat-selection-inner-detail-row"><span class="seat-selection-inner-detail-icon"><i class="fa-solid fa-calendar-days"></i></span><span id="seat-selection-showtime">14:00 - Hôm nay 09/03</span></div>
+              </div>
+              <div class="seat-selection-inner-summary-list" id="seat-selection-summary-items"></div>
+              <div class="seat-selection-inner-total"><span class="seat-selection-inner-total-label">Tổng:</span><span class="seat-selection-inner-total-price" id="seat-selection-total-price">0đ</span></div><a class="seat-selection-inner-sidebar-back" href="booking.html">← QUAY LẠI</a>
+            </aside>
+            <div class="seat-selection-inner-main">
+              <div class="seat-selection-inner-screen-wrap">
+                <div class="seat-selection-inner-screen">MÀN HÌNH</div>
+                <div class="seat-selection-inner-screen-shadow"></div>
+              </div>
+              <div class="seat-selection-inner-grid-wrap">
+                <div class="seat-selection-inner-row-labels" id="seat-selection-row-labels"></div>
+                <div class="seat-selection-inner-grid" id="seat-selection-grid"></div>
+                <div class="seat-selection-inner-col-labels" id="seat-selection-col-labels"></div>
+              </div>
+              <div class="seat-selection-inner-action-bar"><a class="seat-selection-inner-action-back" href="booking.html">← Quay lại chọn suất</a>
+                <button class="seat-selection-inner-action-continue" id="seat-selection-continue" type="button">Tiếp tục thanh toán</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <div class="inner-wrap-1">
+          <div class="inner-title">Đăng ký ngay để không bỏ lỡ các chương trình của chúng tôi</div>
+          <form class="inner-form" action="">
+            <input type="text" placeholder="Nhập email của bạn...">
+            <button>Đăng ký ngay</button>
+          </form>
+        </div>
+        <div class="inner-wrap-2">
+          <ul class="inner-links">
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="booking.html">Mua vé</a></li>
+            <li><a href="my-tickets.html">Vé của tôi</a></li>
+            <li><a href="cinema.html">Rạp phim</a></li>
+          </ul>
+          <ul class="inner-socials">
+            <li><a target="_blank" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a target="_blank" href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+            <li><a target="_blank" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a target="_blank" href="#"><i class="fa-brands fa-youtube"></i></a></li>
+          </ul>
+        </div>
+        <div class="inner-wrap-3">
+          <div class="inner-copyright">© 2026 LatteCinema. All rights reserved.</div><a class="inner-logo" href="index.html"><img src="assets/images/logo1.svg" alt="LatteCinema"></a>
+          <ul class="inner-links">
+            <li><a href="#">Điều khoản dịch vụ</a></li>
+            <li><a href="#">Chính sách bảo mật</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <ul class="box-contact">
+      <li><a target="_blank" href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+      <li><a target="_blank" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+      <li><a target="_blank" href="#"><i class="fa-brands fa-whatsapp"></i></a></li>
+      <li><a target="_blank" href="#"><i class="fa-brands fa-youtube"></i></a></li>
+    </ul>
+  </body>
+</html>
