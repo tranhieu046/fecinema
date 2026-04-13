@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lịch Chiếu – Admin</title>
+  <link rel="stylesheet" href="layout.css" />
+  <style>
+    .movie-cell { display: flex; align-items: center; gap: 10px; }
+    .movie-cell-icon { font-size: 18px; color: #1a3a8f; flex-shrink: 0; }
+    .movie-cell-info { display: flex; flex-direction: column; gap: 2px; }
+    .movie-cell-title { font-weight: 700; font-size: 14px; color: #1a1a2e; }
+    .movie-cell-meta { font-size: 11px; color: #aaa; }
+
+    .room-tag {
+      display: inline-block; background: #e8efff; color: #1a3a8f;
+      border-radius: 6px; font-size: 12px; font-weight: 700; padding: 2px 8px;
+    }
+
+    .time-cell { display: flex; flex-direction: column; gap: 2px; }
+    .time-date { font-size: 11px; color: #aaa; }
+    .time-val { font-size: 13px; color: #444; }
+
+    .price-val { font-weight: 700; color: #0a7a40; font-size: 13px; }
+
+    /* Modal */
+    .modal-form-row { display: flex; gap: 16px; }
+    .modal-form-row .form-group { flex: 1; }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">
+      <span class="admin-sidebar__logo-icon">🎬</span>
+      <span class="admin-sidebar__logo-text">Admin</span>
+    </div>
+    <nav class="admin-sidebar__nav">
+      <a href="index.html" class="admin-nav-item"><span class="admin-nav-item__icon">📊</span><span>Tổng Quan</span></a>
+      <a href="movies.html" class="admin-nav-item"><span class="admin-nav-item__icon">🎬</span><span>Quản Lý Phim</span></a>
+      <a href="showtimes.html" class="admin-nav-item active"><span class="admin-nav-item__icon">📅</span><span>Lịch Chiếu</span></a>
+      <a href="cinema-rooms.html" class="admin-nav-item"><span class="admin-nav-item__icon">🏛️</span><span>Quản Lý Phòng</span></a>
+      <a href="cinemas.html" class="admin-nav-item"><span class="admin-nav-item__icon">🏢</span><span>Quản Lý Rạp</span></a>
+      <a href="users.html" class="admin-nav-item"><span class="admin-nav-item__icon">👥</span><span>Người Dùng</span></a>
+      <a href="reports.html" class="admin-nav-item"><span class="admin-nav-item__icon">📈</span><span>Báo Cáo</span></a>
+    </nav>
+    <button class="admin-sidebar__logout">🚪 Đăng Xuất</button>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="admin-content">
+    <header class="admin-header">
+      <div class="admin-header__user">
+        <div class="admin-header__avatar">👤</div>
+        <span class="admin-header__name">Admin</span>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1 class="page-title">Lịch Chiếu</h1>
+        </div>
+        <div class="page-stats">
+          <span class="stat-item">Tổng: <strong>12</strong> suất chiếu</span>
+          <span class="stat-item stat-green">Còn chỗ: <strong>8</strong></span>
+          <span class="stat-item stat-red">Hết chỗ: <strong>2</strong></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar__filters">
+            <div class="input-search">
+              <span class="s-icon">🔍</span>
+              <input type="text" placeholder="Tìm phim, rạp, phòng..." />
+            </div>
+            <select class="filter-select">
+              <option value="">Tất cả phim</option>
+              <option>Spider-Man: No Way Home</option>
+              <option>The Batman</option>
+              <option>Oppenheimer</option>
+            </select>
+            <select class="filter-select">
+              <option value="">Tất cả rạp</option>
+              <option>CGV Vincom Bà Triệu</option>
+              <option>CGV Vincom Đồng Khởi</option>
+              <option>Lotte Cinema Hà Đông</option>
+            </select>
+            <select class="filter-select">
+              <option value="">Trạng Thái</option>
+              <option>Còn Chỗ</option>
+              <option>Gần Đầy</option>
+              <option>Hết Chỗ</option>
+              <option>Đã Hủy</option>
+            </select>
+            <button class="btn btn-icon" title="Tải lại">↻</button>
+          </div>
+          <button class="btn btn-primary" onclick="document.getElementById('showtimeModal').classList.add('open')">
+            + Thêm Lịch Chiếu
+          </button>
+        </div>
+
+        <!-- Table -->
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Phim / Rạp</th>
+              <th>Phòng</th>
+              <th>Thời Gian Chiếu</th>
+              <th>Định Dạng</th>
+              <th>Giá Vé</th>
+              <th>Ghế Còn</th>
+              <th>Trạng Thái</th>
+              <th>Thao Tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="movie-cell">
+                  <span class="movie-cell-icon">📅</span>
+                  <div class="movie-cell-info">
+                    <span class="movie-cell-title">Spider-Man: No Way Home</span>
+                    <span class="movie-cell-meta">CGV Vincom Bà Triệu</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="room-tag">HN-01</span></td>
+              <td>
+                <div class="time-cell">
+                  <span class="time-date">13/04/2026</span>
+                  <span class="time-val">🕙 10:00 → 12:28</span>
+                </div>
+              </td>
+              <td><span class="room-tag">2D</span></td>
+              <td><span class="price-val">85.000 ₫</span></td>
+              <td><span class="text-muted">82 ghế</span></td>
+              <td><span class="badge badge-green">Còn Chỗ</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('showtimeModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa lịch chiếu này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="movie-cell">
+                  <span class="movie-cell-icon">📅</span>
+                  <div class="movie-cell-info">
+                    <span class="movie-cell-title">Spider-Man: No Way Home</span>
+                    <span class="movie-cell-meta">CGV Vincom Bà Triệu</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="room-tag">HN-IMAX</span></td>
+              <td>
+                <div class="time-cell">
+                  <span class="time-date">13/04/2026</span>
+                  <span class="time-val">🕑 14:30 → 17:00</span>
+                </div>
+              </td>
+              <td><span class="room-tag">IMAX</span></td>
+              <td><span class="price-val">120.000 ₫</span></td>
+              <td><span class="text-muted">15 ghế</span></td>
+              <td><span class="badge badge-orange">Gần Đầy</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('showtimeModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa lịch chiếu này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="movie-cell">
+                  <span class="movie-cell-icon">📅</span>
+                  <div class="movie-cell-info">
+                    <span class="movie-cell-title">The Batman</span>
+                    <span class="movie-cell-meta">Lotte Cinema Hà Đông</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="room-tag">HD-01</span></td>
+              <td>
+                <div class="time-cell">
+                  <span class="time-date">13/04/2026</span>
+                  <span class="time-val">🕖 19:00 → 21:56</span>
+                </div>
+              </td>
+              <td><span class="room-tag">2D</span></td>
+              <td><span class="price-val">90.000 ₫</span></td>
+              <td><span class="text-muted">0 ghế</span></td>
+              <td><span class="badge badge-red">Hết Chỗ</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('showtimeModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa lịch chiếu này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="movie-cell">
+                  <span class="movie-cell-icon">📅</span>
+                  <div class="movie-cell-info">
+                    <span class="movie-cell-title">Oppenheimer</span>
+                    <span class="movie-cell-meta">CGV Vincom Đồng Khởi</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="room-tag">HCM-VIP</span></td>
+              <td>
+                <div class="time-cell">
+                  <span class="time-date">14/04/2026</span>
+                  <span class="time-val">🕗 20:00 → 23:00</span>
+                </div>
+              </td>
+              <td><span class="room-tag">4DX</span></td>
+              <td><span class="price-val">150.000 ₫</span></td>
+              <td><span class="text-muted">45 ghế</span></td>
+              <td><span class="badge badge-green">Còn Chỗ</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('showtimeModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa lịch chiếu này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="movie-cell">
+                  <span class="movie-cell-icon">📅</span>
+                  <div class="movie-cell-info">
+                    <span class="movie-cell-title">Avatar: The Way of Water</span>
+                    <span class="movie-cell-meta">BHD Star Bitexco</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="room-tag">BT-IMAX</span></td>
+              <td>
+                <div class="time-cell">
+                  <span class="time-date">14/04/2026</span>
+                  <span class="time-val">🕑 15:00 → 18:12</span>
+                </div>
+              </td>
+              <td><span class="room-tag">IMAX</span></td>
+              <td><span class="price-val">130.000 ₫</span></td>
+              <td><span class="text-muted">68 ghế</span></td>
+              <td><span class="badge badge-green">Còn Chỗ</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('showtimeModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa lịch chiếu này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pagination">
+          <span class="pag-info">Hiển thị 1 đến 5 của 12 suất chiếu</span>
+          <button class="pag-btn">‹</button>
+          <button class="pag-btn active">1</button>
+          <button class="pag-btn">2</button>
+          <button class="pag-btn">›</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ADD/EDIT SHOWTIME MODAL -->
+<div class="modal-overlay" id="showtimeModal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <span class="modal-title">📅 Thêm Lịch Chiếu Mới</span>
+      <button class="modal-close" onclick="document.getElementById('showtimeModal').classList.remove('open')">×</button>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Phim</label>
+      <select class="form-select">
+        <option value="">Chọn phim...</option>
+        <option>Spider-Man: No Way Home</option>
+        <option>The Batman</option>
+        <option>Oppenheimer</option>
+        <option>Avatar: The Way of Water</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Phòng Chiếu</label>
+      <select class="form-select">
+        <option value="">Chọn phòng chiếu...</option>
+        <option>HN-01 — CGV Vincom Bà Triệu</option>
+        <option>HN-IMAX — CGV Vincom Bà Triệu</option>
+        <option>HN-VIP — CGV Vincom Bà Triệu</option>
+        <option>HCM-01 — CGV Vincom Đồng Khởi</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Thời Gian Bắt Đầu</label>
+      <input type="datetime-local" class="form-input" />
+    </div>
+
+    <div class="modal-form-row">
+      <div class="form-group">
+        <label class="form-label">Định Dạng</label>
+        <select class="form-select">
+          <option>2D</option><option>3D</option><option>IMAX</option><option>4DX</option><option>ScreenX</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Giá Vé (₫)</label>
+        <input type="number" class="form-input" placeholder="85000" min="0" step="5000" />
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="document.getElementById('showtimeModal').classList.remove('open')">Hủy</button>
+      <button class="btn btn-primary">Tạo Lịch</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

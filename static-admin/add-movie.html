@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thêm Phim Mới – Admin</title>
+  <link rel="stylesheet" href="layout.css" />
+  <style>
+    .add-movie-page { max-width: 1100px; }
+
+    .topbar {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .movie-card {
+      background: #fff; border-radius: 12px;
+      padding: 28px; box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+
+    .movie-body {
+      display: grid; grid-template-columns: 240px 1fr;
+      gap: 28px; margin-bottom: 24px;
+    }
+
+    /* Left column - poster */
+    .left-col { display: flex; flex-direction: column; }
+
+    .upload-area {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 12px; cursor: pointer;
+    }
+
+    .upload-placeholder {
+      width: 100%; aspect-ratio: 2/3;
+      background: linear-gradient(135deg, #eef2ff, #dde5fa);
+      border-radius: 12px; border: 2px dashed #a0b0e0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px; transition: border-color 0.2s;
+    }
+    .upload-placeholder:hover { border-color: #1a3a8f; background: #e4ecff; }
+    .upload-img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 12px; border: 1.5px solid #d0d8f0; display: none; }
+    .upload-icon { font-size: 36px; }
+    .upload-label { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: #1a3a8f; }
+    .upload-hint { font-size: 12px; color: #7a8fb0; text-align: center; }
+
+    .upload-btn {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; width: 100%; padding: 10px 0;
+      background: #1a3a8f; border: none; border-radius: 8px;
+      color: #fff; font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .upload-btn:hover { background: #2a5bd4; }
+
+    /* Right column - form */
+    .right-col { display: flex; flex-direction: column; }
+
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* Footer */
+    .movie-footer {
+      border-top: 1px solid #f0f2f8; padding-top: 20px;
+      display: flex; justify-content: center;
+    }
+
+    .submit-btn {
+      background: #1a3a8f; border: none; border-radius: 10px;
+      color: #fff; font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 15px; height: 44px;
+      padding: 0 48px; cursor: pointer; letter-spacing: 0.5px;
+      transition: all 0.2s;
+    }
+    .submit-btn:hover {
+      background: #2a5bd4;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(26,58,143,0.35);
+    }
+
+    @media (max-width: 860px) {
+      .movie-body { grid-template-columns: 1fr; }
+      .form-row-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">
+      <span class="admin-sidebar__logo-icon">🎬</span>
+      <span class="admin-sidebar__logo-text">Admin</span>
+    </div>
+    <nav class="admin-sidebar__nav">
+      <a href="index.html" class="admin-nav-item"><span class="admin-nav-item__icon">📊</span><span>Tổng Quan</span></a>
+      <a href="movies.html" class="admin-nav-item active"><span class="admin-nav-item__icon">🎬</span><span>Quản Lý Phim</span></a>
+      <a href="showtimes.html" class="admin-nav-item"><span class="admin-nav-item__icon">📅</span><span>Lịch Chiếu</span></a>
+      <a href="cinema-rooms.html" class="admin-nav-item"><span class="admin-nav-item__icon">🏛️</span><span>Quản Lý Phòng</span></a>
+      <a href="cinemas.html" class="admin-nav-item"><span class="admin-nav-item__icon">🏢</span><span>Quản Lý Rạp</span></a>
+      <a href="users.html" class="admin-nav-item"><span class="admin-nav-item__icon">👥</span><span>Người Dùng</span></a>
+      <a href="reports.html" class="admin-nav-item"><span class="admin-nav-item__icon">📈</span><span>Báo Cáo</span></a>
+    </nav>
+    <button class="admin-sidebar__logout">🚪 Đăng Xuất</button>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="admin-content">
+    <header class="admin-header">
+      <div class="admin-header__user">
+        <div class="admin-header__avatar">👤</div>
+        <span class="admin-header__name">Admin</span>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="add-movie-page">
+        <!-- Top bar -->
+        <div class="topbar">
+          <a href="movies.html" class="btn-back">← Quay Lại</a>
+          <h1 class="page-title">Thêm Phim Mới</h1>
+        </div>
+
+        <div class="movie-card">
+          <form id="addMovieForm" onsubmit="handleSubmit(event)">
+            <div class="movie-body">
+
+              <!-- Left: Poster -->
+              <div class="left-col">
+                <div class="upload-area" onclick="document.getElementById('posterFile').click()">
+                  <div class="upload-placeholder" id="uploadPlaceholder">
+                    <span class="upload-icon">📤</span>
+                    <span class="upload-label">Xem trước ảnh Poster</span>
+                    <span class="upload-hint">Hoặc nhập URL poster bên phải</span>
+                  </div>
+                  <img id="posterPreview" class="upload-img" alt="poster preview" />
+                  <input type="file" id="posterFile" accept="image/*" style="display:none" onchange="previewPoster(this)" />
+                  <button type="button" class="upload-btn" onclick="event.stopPropagation();document.getElementById('posterFile').click()">
+                    📤 Chọn ảnh xem trước
+                  </button>
+                </div>
+              </div>
+
+              <!-- Right: Form fields -->
+              <div class="right-col">
+                <!-- Title -->
+                <div class="form-group">
+                  <label class="form-label">Tên Phim: <span style="color:#e74c3c">*</span></label>
+                  <input type="text" class="form-input" name="title" placeholder="Nhập tên phim..." required />
+                </div>
+
+                <!-- Genre + Duration -->
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Thể Loại: <span style="color:#e74c3c">*</span></label>
+                    <select class="form-select" name="genre" required>
+                      <option value="">Chọn Thể Loại</option>
+                      <option>Action</option>
+                      <option>Drama</option>
+                      <option>Sci-Fi</option>
+                      <option>Animation</option>
+                      <option>Thriller</option>
+                      <option>Comedy</option>
+                      <option>Horror</option>
+                      <option>Adventure</option>
+                      <option>Crime</option>
+                      <option>Family</option>
+                      <option>Hành động</option>
+                      <option>Kinh dị</option>
+                      <option>Tình cảm</option>
+                      <option>Hoạt hình</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Thời Lượng: <span style="color:#e74c3c">*</span></label>
+                    <div style="display:flex;align-items:center;gap:8px">
+                      <input type="number" class="form-input" name="duration" placeholder="90" min="1" max="500" required style="flex:1" />
+                      <span style="font-size:13px;color:#888;white-space:nowrap">phút</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Status + Poster URL -->
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Trạng Thái: <span style="color:#e74c3c">*</span></label>
+                    <select class="form-select" name="status" required>
+                      <option value="NOW_SHOWING">Đang Chiếu</option>
+                      <option value="COMING_SOON">Sắp Chiếu</option>
+                      <option value="STOPPED">Ngừng Chiếu</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Poster URL:</label>
+                    <input type="url" class="form-input" name="posterUrl" placeholder="https://example.com/poster.jpg"
+                      oninput="previewUrl(this.value)" />
+                  </div>
+                </div>
+
+                <!-- Director + Rating -->
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Đạo Diễn:</label>
+                    <input type="text" class="form-input" name="director" placeholder="Tên đạo diễn..." />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Phân Loại:</label>
+                    <select class="form-select" name="rated">
+                      <option value="">Chọn phân loại</option>
+                      <option value="P">P - Phổ biến</option>
+                      <option value="T13">T13 - Trên 13 tuổi</option>
+                      <option value="T16">T16 - Trên 16 tuổi</option>
+                      <option value="T18">T18 - Trên 18 tuổi</option>
+                      <option value="C">C - Không phổ biến</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Release date + Trailer -->
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Ngày Khởi Chiếu:</label>
+                    <input type="date" class="form-input" name="releaseDate" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Trailer URL:</label>
+                    <input type="url" class="form-input" name="trailerUrl" placeholder="https://www.youtube.com/..." />
+                  </div>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                  <label class="form-label">Mô Tả:</label>
+                  <textarea class="form-textarea" name="description" rows="4" placeholder="Nhập nội dung phim..."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer submit -->
+            <div class="movie-footer">
+              <button type="submit" class="submit-btn">+ Tạo Phim</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  function previewPoster(input) {
+    const file = input.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    document.getElementById('posterPreview').src = url;
+    document.getElementById('posterPreview').style.display = 'block';
+    document.getElementById('uploadPlaceholder').style.display = 'none';
+  }
+
+  function previewUrl(url) {
+    if (!url) return;
+    document.getElementById('posterPreview').src = url;
+    document.getElementById('posterPreview').style.display = 'block';
+    document.getElementById('uploadPlaceholder').style.display = 'none';
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    alert('✅ Tạo phim thành công! (Demo tĩnh)');
+    window.location.href = 'movies.html';
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chỉnh Sửa Phim – Admin</title>
+  <link rel="stylesheet" href="layout.css" />
+  <style>
+    .edit-movie-page { max-width: 1200px; }
+
+    .topbar {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .topbar-title {
+      flex: 1; font-family: 'Montserrat', sans-serif;
+      font-size: 18px; font-weight: 800; color: #1a1a2e; margin: 0;
+    }
+
+    .edit-card {
+      background: #fff; border-radius: 12px;
+      padding: 24px; box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      margin-bottom: 20px;
+    }
+
+    .edit-body {
+      display: grid; grid-template-columns: 260px 1fr;
+      gap: 24px; align-items: start;
+    }
+
+    .left-col { display: flex; flex-direction: column; gap: 16px; }
+
+    .poster-wrap { display: flex; flex-direction: column; gap: 10px; }
+    .poster-img {
+      width: 100%; aspect-ratio: 2/3;
+      object-fit: cover; border-radius: 10px;
+      border: 1px solid #e0e0e0; display: block;
+    }
+    .poster-placeholder {
+      width: 100%; aspect-ratio: 2/3;
+      background: linear-gradient(135deg, #e8efff, #c5d5f5);
+      border-radius: 10px; border: 1px solid #e0e0e0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 40px; color: #1a3a8f;
+    }
+    .poster-btn {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; width: 100%; padding: 9px 0;
+      background: #fff; border: 1.5px solid #1a3a8f;
+      border-radius: 8px; color: #1a3a8f;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .poster-btn:hover { background: #e8efff; }
+
+    /* Trailer embed */
+    .trailer-wrap {
+      width: 100%; border-radius: 10px;
+      overflow: hidden; border: 1px solid #e0e0e0;
+    }
+    .trailer-iframe { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
+
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* Showtimes section */
+    .showtimes-section {
+      background: #fff; border-radius: 12px;
+      padding: 20px; box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .showtimes-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px; font-weight: 800;
+      color: #1a3a8f; margin: 0 0 14px;
+    }
+    .st-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 0; border-bottom: 1px solid #f5f5f5;
+    }
+    .st-row:last-child { border-bottom: none; }
+    .st-cinema { font-weight: 600; color: #1a1a2e; font-size: 14px; }
+    .st-time { color: #666; font-size: 13px; }
+
+    .save-btn {
+      background: #1a3a8f; border: none; border-radius: 8px;
+      color: #fff; font-family: 'Inter', sans-serif;
+      font-weight: 700; font-size: 14px; height: 38px;
+      padding: 0 24px; cursor: pointer; transition: all 0.2s;
+    }
+    .save-btn:hover { background: #2a5bd4; }
+
+    @media (max-width: 860px) {
+      .edit-body { grid-template-columns: 1fr; }
+      .form-row-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">
+      <span class="admin-sidebar__logo-icon">🎬</span>
+      <span class="admin-sidebar__logo-text">Admin</span>
+    </div>
+    <nav class="admin-sidebar__nav">
+      <a href="index.html" class="admin-nav-item"><span class="admin-nav-item__icon">📊</span><span>Tổng Quan</span></a>
+      <a href="movies.html" class="admin-nav-item active"><span class="admin-nav-item__icon">🎬</span><span>Quản Lý Phim</span></a>
+      <a href="showtimes.html" class="admin-nav-item"><span class="admin-nav-item__icon">📅</span><span>Lịch Chiếu</span></a>
+      <a href="cinema-rooms.html" class="admin-nav-item"><span class="admin-nav-item__icon">🏛️</span><span>Quản Lý Phòng</span></a>
+      <a href="cinemas.html" class="admin-nav-item"><span class="admin-nav-item__icon">🏢</span><span>Quản Lý Rạp</span></a>
+      <a href="users.html" class="admin-nav-item"><span class="admin-nav-item__icon">👥</span><span>Người Dùng</span></a>
+      <a href="reports.html" class="admin-nav-item"><span class="admin-nav-item__icon">📈</span><span>Báo Cáo</span></a>
+    </nav>
+    <button class="admin-sidebar__logout">🚪 Đăng Xuất</button>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="admin-content">
+    <header class="admin-header">
+      <div class="admin-header__user">
+        <div class="admin-header__avatar">👤</div>
+        <span class="admin-header__name">Admin</span>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="edit-movie-page">
+        <!-- Top bar -->
+        <div class="topbar">
+          <a href="movies.html" class="btn-back">← Quay Lại</a>
+          <h1 class="topbar-title">Spider-Man: No Way Home</h1>
+          <button class="save-btn" onclick="alert('✅ Lưu thành công! (Demo tĩnh)')">💾 Lưu Thay Đổi</button>
+        </div>
+
+        <div class="edit-card">
+          <form id="editForm" onsubmit="handleSave(event)">
+            <div class="edit-body">
+
+              <!-- Left: Poster + Trailer -->
+              <div class="left-col">
+                <div class="poster-wrap">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_official_poster.jpg"
+                    alt="poster"
+                    class="poster-img"
+                    onerror="this.style.display='none';document.getElementById('pPlaceholder').style.display='flex'"
+                  />
+                  <div id="pPlaceholder" class="poster-placeholder" style="display:none">🎬</div>
+                  <input type="file" id="posterFile2" accept="image/*" style="display:none" onchange="previewEdit(this)" />
+                  <button type="button" class="poster-btn" onclick="document.getElementById('posterFile2').click()">
+                    📤 Đổi Ảnh Poster
+                  </button>
+                </div>
+
+                <!-- Trailer preview -->
+                <div>
+                  <label class="form-label" style="margin-bottom:8px;display:block">Trailer URL:</label>
+                  <input type="url" class="form-input" name="trailerUrl"
+                    value="https://www.youtube.com/embed/JfVOs4VSpmA"
+                    style="margin-bottom:10px"
+                    oninput="updateTrailer(this.value)" />
+                  <div class="trailer-wrap">
+                    <iframe id="trailerFrame" class="trailer-iframe"
+                      src="https://www.youtube.com/embed/JfVOs4VSpmA"
+                      allowfullscreen title="Trailer"></iframe>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: Form fields -->
+              <div>
+                <!-- Title -->
+                <div class="form-group">
+                  <label class="form-label">Tên Phim: <span style="color:#e74c3c">*</span></label>
+                  <input type="text" class="form-input" name="title" value="Spider-Man: No Way Home" required />
+                </div>
+
+                <!-- Genre + Duration -->
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Thể Loại:</label>
+                    <select class="form-select" name="genre">
+                      <option>Action</option>
+                      <option selected>Sci-Fi</option>
+                      <option>Adventure</option>
+                      <option>Drama</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Thời Lượng:</label>
+                    <div style="display:flex;align-items:center;gap:8px">
+                      <input type="number" class="form-input" name="duration" value="148" min="1" max="500" style="flex:1" />
+                      <span style="font-size:13px;color:#888;white-space:nowrap">phút</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Status + Poster URL -->
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Trạng Thái:</label>
+                    <select class="form-select" name="status">
+                      <option value="NOW_SHOWING" selected>Đang Chiếu</option>
+                      <option value="COMING_SOON">Sắp Chiếu</option>
+                      <option value="STOPPED">Ngừng Chiếu</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Poster URL:</label>
+                    <input type="url" class="form-input" name="posterUrl"
+                      value="https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_official_poster.jpg" />
+                  </div>
+                </div>
+
+                <!-- Director + Rating -->
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Đạo Diễn:</label>
+                    <input type="text" class="form-input" name="director" value="Jon Watts" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Phân Loại:</label>
+                    <select class="form-select" name="rated">
+                      <option value="P" selected>P - Phổ biến</option>
+                      <option value="T13">T13 - Trên 13 tuổi</option>
+                      <option value="T16">T16 - Trên 16 tuổi</option>
+                      <option value="T18">T18 - Trên 18 tuổi</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Release date -->
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Ngày Khởi Chiếu:</label>
+                    <input type="date" class="form-input" name="releaseDate" value="2021-12-17" />
+                  </div>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                  <label class="form-label">Mô Tả:</label>
+                  <textarea class="form-textarea" name="description" rows="5">
+Peter Parker phải đối mặt với hậu quả từ việc danh tính người nhện của anh bị tiết lộ. Khi anh nhờ Tiến sĩ Strange làm phép thuật để mọi người quên đi sự việc, phép thuật mở ra cánh cổng tới đa vũ trụ, cho phép các phản diện từ những thực tại khác xuất hiện...
+                  </textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Save button (bottom) -->
+            <div style="border-top:1px solid #f0f2f8;padding-top:20px;display:flex;justify-content:center;margin-top:4px">
+              <button type="submit" class="save-btn" style="padding:0 48px;height:44px;font-size:15px;border-radius:10px">
+                💾 Lưu Thay Đổi
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Showtimes Section -->
+        <div class="showtimes-section">
+          <h3 class="showtimes-title">📅 Lịch Chiếu — Spider-Man: No Way Home</h3>
+          <div class="st-row">
+            <div>
+              <span class="st-cinema">CGV Vincom Bà Triệu</span>
+              <span class="st-time"> &nbsp;• Phòng HN-01 &nbsp;• 2D</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <span class="text-muted">13/04/2026 10:00</span>
+              <span class="badge badge-green">Còn Chỗ</span>
+              <span style="font-weight:700;color:#0a7a40">85.000 ₫</span>
+              <div class="actions-cell">
+                <button class="btn btn-edit">✏️ Sửa</button>
+                <button class="btn btn-delete">🗑 Xóa</button>
+              </div>
+            </div>
+          </div>
+          <div class="st-row">
+            <div>
+              <span class="st-cinema">CGV Vincom Bà Triệu</span>
+              <span class="st-time"> &nbsp;• Phòng HN-IMAX &nbsp;• IMAX</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <span class="text-muted">13/04/2026 14:30</span>
+              <span class="badge badge-orange">Gần Đầy</span>
+              <span style="font-weight:700;color:#0a7a40">120.000 ₫</span>
+              <div class="actions-cell">
+                <button class="btn btn-edit">✏️ Sửa</button>
+                <button class="btn btn-delete">🗑 Xóa</button>
+              </div>
+            </div>
+          </div>
+          <div class="st-row">
+            <div>
+              <span class="st-cinema">Lotte Cinema Hà Đông</span>
+              <span class="st-time"> &nbsp;• Phòng HD-01 &nbsp;• 2D</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <span class="text-muted">14/04/2026 19:00</span>
+              <span class="badge badge-red">Hết Chỗ</span>
+              <span style="font-weight:700;color:#0a7a40">90.000 ₫</span>
+              <div class="actions-cell">
+                <button class="btn btn-edit">✏️ Sửa</button>
+                <button class="btn btn-delete">🗑 Xóa</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  function previewEdit(input) {
+    const file = input.files[0];
+    if (!file) return;
+    const img = document.querySelector('.poster-img');
+    img.src = URL.createObjectURL(file);
+    img.style.display = 'block';
+  }
+
+  function updateTrailer(url) {
+    document.getElementById('trailerFrame').src = url;
+  }
+
+  function handleSave(e) {
+    e.preventDefault();
+    alert('✅ Lưu thay đổi thành công! (Demo tĩnh)');
+    window.location.href = 'movies.html';
+  }
+</script>
+</body>
+</html>

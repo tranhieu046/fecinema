@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản Lý Phòng Chiếu – Admin</title>
+  <link rel="stylesheet" href="layout.css" />
+  <style>
+    .room-name-cell { display: flex; align-items: center; gap: 10px; }
+    .room-name-icon { font-size: 18px; color: #1a3a8f; }
+    .room-name-info { display: flex; flex-direction: column; gap: 2px; }
+    .room-name { font-weight: 700; color: #1a1a2e; font-size: 14px; }
+    .room-desc { font-size: 11px; color: #aaa; }
+    .room-capacity { font-weight: 600; color: #1a1a2e; font-size: 13px; }
+    .modal-form-row { display: flex; gap: 16px; }
+    .modal-form-row .form-group { flex: 1; }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">
+      <span class="admin-sidebar__logo-icon">🎬</span>
+      <span class="admin-sidebar__logo-text">Admin</span>
+    </div>
+    <nav class="admin-sidebar__nav">
+      <a href="index.html" class="admin-nav-item"><span class="admin-nav-item__icon">📊</span><span>Tổng Quan</span></a>
+      <a href="movies.html" class="admin-nav-item"><span class="admin-nav-item__icon">🎬</span><span>Quản Lý Phim</span></a>
+      <a href="showtimes.html" class="admin-nav-item"><span class="admin-nav-item__icon">📅</span><span>Lịch Chiếu</span></a>
+      <a href="cinema-rooms.html" class="admin-nav-item active"><span class="admin-nav-item__icon">🏛️</span><span>Quản Lý Phòng</span></a>
+      <a href="cinemas.html" class="admin-nav-item"><span class="admin-nav-item__icon">🏢</span><span>Quản Lý Rạp</span></a>
+      <a href="users.html" class="admin-nav-item"><span class="admin-nav-item__icon">👥</span><span>Người Dùng</span></a>
+      <a href="reports.html" class="admin-nav-item"><span class="admin-nav-item__icon">📈</span><span>Báo Cáo</span></a>
+    </nav>
+    <button class="admin-sidebar__logout">🚪 Đăng Xuất</button>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="admin-content">
+    <header class="admin-header">
+      <div class="admin-header__user">
+        <div class="admin-header__avatar">👤</div>
+        <span class="admin-header__name">Admin</span>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1 class="page-title">Quản Lý Phòng Chiếu</h1>
+        </div>
+        <div class="page-stats">
+          <span class="stat-item">Tổng: <strong>8</strong> phòng</span>
+          <span class="stat-item">Standard: <strong>4</strong></span>
+          <span class="stat-item">IMAX: <strong>2</strong></span>
+          <span class="stat-item">VIP: <strong>1</strong></span>
+          <span class="stat-item">4DX: <strong>1</strong></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar__filters">
+            <div class="input-search">
+              <span class="s-icon">🔍</span>
+              <input type="text" placeholder="Tìm phòng, rạp..." />
+            </div>
+            <select class="filter-select">
+              <option value="">Loại Phòng</option>
+              <option>Standard</option>
+              <option>IMAX</option>
+              <option>4DX</option>
+              <option>VIP</option>
+            </select>
+            <select class="filter-select" style="min-width:180px">
+              <option value="">Tất cả rạp</option>
+              <option>CGV Vincom Bà Triệu</option>
+              <option>Lotte Cinema Hà Đông</option>
+              <option>CGV Vincom Đồng Khởi</option>
+              <option>BHD Star Bitexco</option>
+            </select>
+            <button class="btn btn-icon" title="Tải lại">↻</button>
+          </div>
+          <button class="btn btn-primary" onclick="document.getElementById('roomModal').classList.add('open')">
+            + Thêm Phòng
+          </button>
+        </div>
+
+        <!-- Table -->
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Phòng Chiếu</th>
+              <th>Rạp Chiếu</th>
+              <th>Loại Phòng</th>
+              <th>Bố Cục</th>
+              <th>Tổng Ghế</th>
+              <th>Thao Tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="room-name-cell">
+                  <span class="room-name-icon">🎥</span>
+                  <div class="room-name-info">
+                    <span class="room-name">HN-01</span>
+                    <span class="room-desc">Phòng chiếu 2D tiêu chuẩn</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">CGV Vincom Bà Triệu</span></td>
+              <td><span class="badge badge-sm badge-blue">Standard</span></td>
+              <td><span class="text-muted">10 hàng × 12 ghế</span></td>
+              <td><span class="room-capacity">120 ghế</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('roomModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa phòng này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="room-name-cell">
+                  <span class="room-name-icon">🎥</span>
+                  <div class="room-name-info">
+                    <span class="room-name">HN-IMAX</span>
+                    <span class="room-desc">Phòng chiếu IMAX cao cấp</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">CGV Vincom Bà Triệu</span></td>
+              <td><span class="badge badge-sm badge-gold">IMAX</span></td>
+              <td><span class="text-muted">15 hàng × 18 ghế</span></td>
+              <td><span class="room-capacity">270 ghế</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('roomModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa phòng này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="room-name-cell">
+                  <span class="room-name-icon">🎥</span>
+                  <div class="room-name-info">
+                    <span class="room-name">HN-VIP</span>
+                    <span class="room-desc">Phòng VIP ghế nằm</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">CGV Vincom Bà Triệu</span></td>
+              <td><span class="badge badge-sm badge-purple">VIP</span></td>
+              <td><span class="text-muted">8 hàng × 10 ghế</span></td>
+              <td><span class="room-capacity">80 ghế</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('roomModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa phòng này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="room-name-cell">
+                  <span class="room-name-icon">🎥</span>
+                  <div class="room-name-info">
+                    <span class="room-name">HD-01</span>
+                    <span class="room-desc">Phòng chiếu tiêu chuẩn</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">Lotte Cinema Hà Đông</span></td>
+              <td><span class="badge badge-sm badge-blue">Standard</span></td>
+              <td><span class="text-muted">10 hàng × 12 ghế</span></td>
+              <td><span class="room-capacity">120 ghế</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('roomModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa phòng này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="room-name-cell">
+                  <span class="room-name-icon">🎥</span>
+                  <div class="room-name-info">
+                    <span class="room-name">HCM-01</span>
+                    <span class="room-desc">Phòng chiếu tiêu chuẩn</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">CGV Vincom Đồng Khởi</span></td>
+              <td><span class="badge badge-sm badge-blue">Standard</span></td>
+              <td><span class="text-muted">10 hàng × 14 ghế</span></td>
+              <td><span class="room-capacity">140 ghế</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('roomModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa phòng này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="room-name-cell">
+                  <span class="room-name-icon">🎥</span>
+                  <div class="room-name-info">
+                    <span class="room-name">HCM-VIP</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">CGV Vincom Đồng Khởi</span></td>
+              <td><span class="badge badge-sm badge-purple">VIP</span></td>
+              <td><span class="text-muted">6 hàng × 8 ghế</span></td>
+              <td><span class="room-capacity">48 ghế</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('roomModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa phòng này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="room-name-cell">
+                  <span class="room-name-icon">🎥</span>
+                  <div class="room-name-info">
+                    <span class="room-name">BT-IMAX</span>
+                    <span class="room-desc">IMAX Bitexco</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">BHD Star Bitexco</span></td>
+              <td><span class="badge badge-sm badge-gold">IMAX</span></td>
+              <td><span class="text-muted">18 hàng × 20 ghế</span></td>
+              <td><span class="room-capacity">360 ghế</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('roomModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa phòng này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="room-name-cell">
+                  <span class="room-name-icon">🎥</span>
+                  <div class="room-name-info">
+                    <span class="room-name">BT-4DX</span>
+                    <span class="room-desc">Phòng 4DX hiệu ứng đặc biệt</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">BHD Star Bitexco</span></td>
+              <td><span class="badge badge-sm badge-red">4DX</span></td>
+              <td><span class="text-muted">8 hàng × 10 ghế</span></td>
+              <td><span class="room-capacity">80 ghế</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('roomModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa phòng này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pagination">
+          <span class="pag-info">Hiển thị 1 đến 8 của 8 phòng</span>
+          <button class="pag-btn">‹</button>
+          <button class="pag-btn active">1</button>
+          <button class="pag-btn">›</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ADD/EDIT ROOM MODAL -->
+<div class="modal-overlay" id="roomModal">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <span class="modal-title">🏛️ Thêm Phòng Chiếu Mới</span>
+      <button class="modal-close" onclick="document.getElementById('roomModal').classList.remove('open')">×</button>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Rạp Chiếu</label>
+      <select class="form-select">
+        <option value="">Chọn rạp</option>
+        <option>CGV Vincom Bà Triệu — Hà Nội</option>
+        <option>Lotte Cinema Hà Đông — Hà Nội</option>
+        <option>CGV Vincom Đồng Khởi — TP. Hồ Chí Minh</option>
+        <option>BHD Star Bitexco — TP. Hồ Chí Minh</option>
+      </select>
+    </div>
+
+    <div class="modal-form-row">
+      <div class="form-group">
+        <label class="form-label">Số Phòng</label>
+        <input type="text" class="form-input" placeholder="HN-01" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Loại Phòng</label>
+        <select class="form-select">
+          <option>Standard</option>
+          <option>IMAX</option>
+          <option>4DX</option>
+          <option>VIP</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="modal-form-row">
+      <div class="form-group">
+        <label class="form-label">Số Hàng</label>
+        <input type="number" class="form-input" placeholder="10" min="1" max="50" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ghế / Hàng</label>
+        <input type="number" class="form-input" placeholder="12" min="1" max="50" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Mô Tả</label>
+      <input type="text" class="form-input" placeholder="Phòng chiếu 2D tiêu chuẩn..." />
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="document.getElementById('roomModal').classList.remove('open')">Hủy</button>
+      <button class="btn btn-primary">Tạo Phòng</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

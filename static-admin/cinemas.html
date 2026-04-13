@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản Lý Rạp – Admin</title>
+  <link rel="stylesheet" href="layout.css" />
+  <style>
+    .cinema-name-cell { display: flex; align-items: center; gap: 12px; }
+    .cinema-name-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: linear-gradient(135deg, #1a3a8f, #2a5bd4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: #fff; flex-shrink: 0;
+    }
+    .cinema-name-info { display: flex; flex-direction: column; gap: 2px; }
+    .cinema-name { font-weight: 700; color: #1a1a2e; font-size: 14px; }
+    .cinema-id { font-size: 11px; color: #bbb; }
+
+    .address-cell { display: flex; align-items: center; gap: 6px; }
+    .addr-icon { color: #1a3a8f; font-size: 13px; }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">
+      <span class="admin-sidebar__logo-icon">🎬</span>
+      <span class="admin-sidebar__logo-text">Admin</span>
+    </div>
+    <nav class="admin-sidebar__nav">
+      <a href="index.html" class="admin-nav-item"><span class="admin-nav-item__icon">📊</span><span>Tổng Quan</span></a>
+      <a href="movies.html" class="admin-nav-item"><span class="admin-nav-item__icon">🎬</span><span>Quản Lý Phim</span></a>
+      <a href="showtimes.html" class="admin-nav-item"><span class="admin-nav-item__icon">📅</span><span>Lịch Chiếu</span></a>
+      <a href="cinema-rooms.html" class="admin-nav-item"><span class="admin-nav-item__icon">🏛️</span><span>Quản Lý Phòng</span></a>
+      <a href="cinemas.html" class="admin-nav-item active"><span class="admin-nav-item__icon">🏢</span><span>Quản Lý Rạp</span></a>
+      <a href="users.html" class="admin-nav-item"><span class="admin-nav-item__icon">👥</span><span>Người Dùng</span></a>
+      <a href="reports.html" class="admin-nav-item"><span class="admin-nav-item__icon">📈</span><span>Báo Cáo</span></a>
+    </nav>
+    <button class="admin-sidebar__logout">🚪 Đăng Xuất</button>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="admin-content">
+    <header class="admin-header">
+      <div class="admin-header__user">
+        <div class="admin-header__avatar">👤</div>
+        <span class="admin-header__name">Admin</span>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1 class="page-title">Quản Lý Rạp Chiếu</h1>
+        </div>
+        <div class="page-stats">
+          <span class="stat-item">Tổng: <strong>4</strong> rạp</span>
+          <span class="stat-item stat-city">Hà Nội: <strong>2</strong></span>
+          <span class="stat-item stat-city">TP. HCM: <strong>2</strong></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar__filters">
+            <div class="input-search" style="width:280px">
+              <span class="s-icon">🔍</span>
+              <input type="text" placeholder="Tìm theo tên rạp, địa chỉ..." style="width:220px" />
+            </div>
+            <select class="filter-select">
+              <option value="">Thành Phố</option>
+              <option>Hà Nội</option>
+              <option>TP. Hồ Chí Minh</option>
+              <option>Đà Nẵng</option>
+            </select>
+            <button class="btn btn-icon" title="Tải lại">↻</button>
+          </div>
+          <button class="btn btn-primary" onclick="document.getElementById('cinemaModal').classList.add('open')">
+            + Thêm Rạp
+          </button>
+        </div>
+
+        <!-- Table -->
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Rạp Chiếu</th>
+              <th>Địa Chỉ</th>
+              <th>Thành Phố</th>
+              <th>Thao Tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="cinema-name-cell">
+                  <div class="cinema-name-icon">🏢</div>
+                  <div class="cinema-name-info">
+                    <span class="cinema-name">CGV Vincom Bà Triệu</span>
+                    <span class="cinema-id">#1</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="address-cell">
+                  <span class="addr-icon">📍</span>
+                  <span class="text-muted">191 Bà Triệu, Hai Bà Trưng</span>
+                </div>
+              </td>
+              <td><span class="badge badge-city">Hà Nội</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('cinemaModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa rạp này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cinema-name-cell">
+                  <div class="cinema-name-icon">🏢</div>
+                  <div class="cinema-name-info">
+                    <span class="cinema-name">Lotte Cinema Hà Đông</span>
+                    <span class="cinema-id">#2</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="address-cell">
+                  <span class="addr-icon">📍</span>
+                  <span class="text-muted">Tố Hữu, Hà Đông</span>
+                </div>
+              </td>
+              <td><span class="badge badge-city">Hà Nội</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('cinemaModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa rạp này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cinema-name-cell">
+                  <div class="cinema-name-icon">🏢</div>
+                  <div class="cinema-name-info">
+                    <span class="cinema-name">CGV Vincom Đồng Khởi</span>
+                    <span class="cinema-id">#3</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="address-cell">
+                  <span class="addr-icon">📍</span>
+                  <span class="text-muted">72 Lê Thánh Tôn, Quận 1</span>
+                </div>
+              </td>
+              <td><span class="badge badge-city">TP. Hồ Chí Minh</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('cinemaModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa rạp này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cinema-name-cell">
+                  <div class="cinema-name-icon">🏢</div>
+                  <div class="cinema-name-info">
+                    <span class="cinema-name">BHD Star Bitexco</span>
+                    <span class="cinema-id">#4</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="address-cell">
+                  <span class="addr-icon">📍</span>
+                  <span class="text-muted">2 Hải Triều, Quận 1</span>
+                </div>
+              </td>
+              <td><span class="badge badge-city">TP. Hồ Chí Minh</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-edit" onclick="document.getElementById('cinemaModal').classList.add('open')">✏️ Sửa</button>
+                  <button class="btn btn-delete" onclick="return confirm('Xóa rạp này?')">🗑 Xóa</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pagination">
+          <span class="pag-info">Hiển thị 1 đến 4 của 4 rạp</span>
+          <button class="pag-btn">‹</button>
+          <button class="pag-btn active">1</button>
+          <button class="pag-btn">›</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ADD/EDIT CINEMA MODAL -->
+<div class="modal-overlay" id="cinemaModal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">🏢 Thêm Rạp Chiếu Mới</span>
+      <button class="modal-close" onclick="document.getElementById('cinemaModal').classList.remove('open')">×</button>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Tên Rạp Chiếu</label>
+      <input type="text" class="form-input" placeholder="CGV Vincom Bà Triệu..." />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Địa Chỉ</label>
+      <input type="text" class="form-input" placeholder="191 Bà Triệu, Hai Bà Trưng..." />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Thành Phố</label>
+      <select class="form-select">
+        <option value="">Chọn thành phố</option>
+        <option>Hà Nội</option>
+        <option>TP. Hồ Chí Minh</option>
+        <option>Đà Nẵng</option>
+        <option>Hải Phòng</option>
+        <option>Cần Thơ</option>
+        <option>Khác</option>
+      </select>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="document.getElementById('cinemaModal').classList.remove('open')">Hủy</button>
+      <button class="btn btn-primary">Thêm Rạp</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

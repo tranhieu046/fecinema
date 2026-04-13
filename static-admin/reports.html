@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Báo Cáo & Thống Kê – Admin</title>
+  <link rel="stylesheet" href="layout.css" />
+  <style>
+    .reports-page { max-width: 1300px; display: flex; flex-direction: column; gap: 20px; }
+
+    .reports-controls { display: flex; align-items: center; gap: 8px; }
+
+    /* KPI grid */
+    .kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .kpi-card {
+      background: #fff; border-radius: 12px; padding: 20px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      display: flex; align-items: flex-start; gap: 16px;
+      transition: box-shadow 0.2s;
+    }
+    .kpi-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+    .kpi-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .kpi-body { display: flex; flex-direction: column; gap: 4px; }
+    .kpi-label { font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+    .kpi-value { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 900; color: #1a1a2e; line-height: 1.2; }
+    .kpi-sub { font-size: 12px; display: flex; align-items: center; gap: 4px; margin-top: 2px; }
+    .kpi-sub.up { color: #0a7a40; }
+    .kpi-sub.neutral { color: #888; }
+
+    /* Charts row */
+    .charts-row { display: grid; grid-template-columns: 1fr 340px; gap: 16px; }
+    .chart-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+    .chart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .chart-title { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 800; color: #1a1a2e; margin: 0; }
+
+    /* CSS Bar chart */
+    .bar-chart { display: flex; align-items: flex-end; gap: 6px; height: 180px; padding-bottom: 24px; position: relative; }
+    .bar-group { display: flex; flex-direction: column; align-items: center; flex: 1; gap: 4px; }
+    .bar-wrap { display: flex; gap: 2px; align-items: flex-end; height: 150px; }
+    .bar {
+      width: 12px; border-radius: 4px 4px 0 0;
+      transition: opacity 0.2s;
+    }
+    .bar:hover { opacity: 0.75; cursor: pointer; }
+    .bar-revenue { background: #1a3a8f; }
+    .bar-tickets { background: #a3c4f8; }
+    .bar-label { font-size: 10px; color: #aaa; font-family: 'Inter', sans-serif; }
+    .chart-legend { display: flex; gap: 16px; margin-top: 8px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #666; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+    /* Pie chart CSS */
+    .pie-section { display: flex; flex-direction: column; gap: 8px; }
+    .pie-placeholder {
+      width: 160px; height: 160px; border-radius: 50%;
+      background: conic-gradient(
+        #1a3a8f 0% 38%,
+        #5b21b6 38% 62%,
+        #0a7a40 62% 78%,
+        #92600a 78% 90%,
+        #c0392b 90% 100%
+      );
+      margin: 0 auto;
+    }
+    .pie-legend { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+    .pie-legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+    .pie-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .pie-name { flex: 1; color: #555; }
+    .pie-val { font-weight: 700; color: #1a1a2e; font-size: 12px; }
+
+    /* Two-col row */
+    .two-col-row { display: grid; grid-template-columns: 340px 1fr; gap: 16px; }
+
+    /* Top movies */
+    .top-list { display: flex; flex-direction: column; }
+    .top-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid #f5f5f5;
+    }
+    .top-item:last-child { border-bottom: none; }
+    .top-rank {
+      width: 24px; height: 24px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; flex-shrink: 0;
+    }
+    .rank-1 { background: #fff3cd; color: #92600a; }
+    .rank-2 { background: #e8eaed; color: #555; }
+    .rank-3 { background: #ffeaea; color: #c0392b; }
+    .rank-n { background: #f0f2f5; color: #888; }
+    .top-info { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .top-title { font-size: 13px; font-weight: 600; color: #1a1a2e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .top-meta { font-size: 11px; color: #999; }
+    .top-revenue { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 800; color: #1a3a8f; white-space: nowrap; }
+
+    /* Transactions table */
+    .txn-id { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: #1a3a8f; }
+    .txn-amount { font-family: 'Montserrat', sans-serif; font-weight: 700; color: #1a1a2e; }
+
+    @media (max-width: 1100px) {
+      .kpi-grid { grid-template-columns: repeat(2,1fr); }
+      .charts-row, .two-col-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">
+      <span class="admin-sidebar__logo-icon">🎬</span>
+      <span class="admin-sidebar__logo-text">Admin</span>
+    </div>
+    <nav class="admin-sidebar__nav">
+      <a href="index.html" class="admin-nav-item"><span class="admin-nav-item__icon">📊</span><span>Tổng Quan</span></a>
+      <a href="movies.html" class="admin-nav-item"><span class="admin-nav-item__icon">🎬</span><span>Quản Lý Phim</span></a>
+      <a href="showtimes.html" class="admin-nav-item"><span class="admin-nav-item__icon">📅</span><span>Lịch Chiếu</span></a>
+      <a href="cinema-rooms.html" class="admin-nav-item"><span class="admin-nav-item__icon">🏛️</span><span>Quản Lý Phòng</span></a>
+      <a href="cinemas.html" class="admin-nav-item"><span class="admin-nav-item__icon">🏢</span><span>Quản Lý Rạp</span></a>
+      <a href="users.html" class="admin-nav-item"><span class="admin-nav-item__icon">👥</span><span>Người Dùng</span></a>
+      <a href="reports.html" class="admin-nav-item active"><span class="admin-nav-item__icon">📈</span><span>Báo Cáo</span></a>
+    </nav>
+    <button class="admin-sidebar__logout">🚪 Đăng Xuất</button>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="admin-content">
+    <header class="admin-header">
+      <div class="admin-header__user">
+        <div class="admin-header__avatar">👤</div>
+        <span class="admin-header__name">Admin</span>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="reports-page">
+
+        <!-- Header -->
+        <div class="page-header" style="margin-bottom:0">
+          <h1 class="page-title">Báo Cáo &amp; Thống Kê</h1>
+          <div class="reports-controls">
+            <select class="filter-select" style="width:180px">
+              <option>Quý 1/2026</option>
+              <option>Nửa năm đầu 2026</option>
+              <option>Cả năm 2026</option>
+            </select>
+            <button class="btn btn-icon">↻</button>
+          </div>
+        </div>
+
+        <!-- KPI -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:#e8efff;color:#1a3a8f">💰</div>
+            <div class="kpi-body">
+              <span class="kpi-label">Tổng Doanh Thu</span>
+              <span class="kpi-value">831.5tr ₫</span>
+              <span class="kpi-sub up">↑ Quý 1/2026</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:#e6f9f0;color:#0a7a40">🎟️</div>
+            <div class="kpi-body">
+              <span class="kpi-label">Tổng Vé Bán</span>
+              <span class="kpi-value">11,240 vé</span>
+              <span class="kpi-sub up">↑ Giá TB: 74.000 ₫</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:#f0eaff;color:#5b21b6">🎬</div>
+            <div class="kpi-body">
+              <span class="kpi-label">Phim Đang Chiếu</span>
+              <span class="kpi-value">12 phim</span>
+              <span class="kpi-sub neutral">5 phim sắp ra mắt</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:#fff3e0;color:#c35a00">👤</div>
+            <div class="kpi-body">
+              <span class="kpi-label">Người Dùng Mới</span>
+              <span class="kpi-value">87</span>
+              <span class="kpi-sub neutral">Tổng: 324 người dùng</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts row -->
+        <div class="charts-row">
+          <!-- Monthly Revenue Bar Chart -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3 class="chart-title">Doanh Thu &amp; Vé Theo Tháng</h3>
+              <span style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:900;color:#1a3a8f">831.5tr ₫</span>
+            </div>
+            <div class="bar-chart">
+              <!-- T1 -->
+              <div class="bar-group">
+                <div class="bar-wrap">
+                  <div class="bar bar-revenue" style="height:63px" title="T1: 42tr ₫"></div>
+                  <div class="bar bar-tickets" style="height:43px" title="T1: 580 vé"></div>
+                </div>
+                <span class="bar-label">T1</span>
+              </div>
+              <!-- T2 -->
+              <div class="bar-group">
+                <div class="bar-wrap">
+                  <div class="bar bar-revenue" style="height:57px" title="T2: 38tr ₫"></div>
+                  <div class="bar bar-tickets" style="height:38px" title="T2: 510 vé"></div>
+                </div>
+                <span class="bar-label">T2</span>
+              </div>
+              <!-- T3 -->
+              <div class="bar-group">
+                <div class="bar-wrap">
+                  <div class="bar bar-revenue" style="height:98px" title="T3: 65tr ₫"></div>
+                  <div class="bar bar-tickets" style="height:65px" title="T3: 870 vé"></div>
+                </div>
+                <span class="bar-label">T3</span>
+              </div>
+              <!-- T4 -->
+              <div class="bar-group">
+                <div class="bar-wrap">
+                  <div class="bar bar-revenue" style="height:107px" title="T4: 71tr ₫"></div>
+                  <div class="bar bar-tickets" style="height:71px" title="T4: 950 vé"></div>
+                </div>
+                <span class="bar-label">T4</span>
+              </div>
+              <!-- T5 -->
+              <div class="bar-group">
+                <div class="bar-wrap">
+                  <div class="bar bar-revenue" style="height:87px" title="T5: 58tr ₫"></div>
+                  <div class="bar bar-tickets" style="height:58px" title="T5: 780 vé"></div>
+                </div>
+                <span class="bar-label">T5</span>
+              </div>
+              <!-- T6 -->
+              <div class="bar-group">
+                <div class="bar-wrap">
+                  <div class="bar bar-revenue" style="height:123px" title="T6: 82tr ₫"></div>
+                  <div class="bar bar-tickets" style="height:82px" title="T6: 1100 vé"></div>
+                </div>
+                <span class="bar-label">T6</span>
+              </div>
+              <!-- T7 -->
+              <div class="bar-group">
+                <div class="bar-wrap">
+                  <div class="bar bar-revenue" style="height:143px" title="T7: 95tr ₫"></div>
+                  <div class="bar bar-tickets" style="height:96px" title="T7: 1280 vé"></div>
+                </div>
+                <span class="bar-label">T7</span>
+              </div>
+              <!-- T8 -->
+              <div class="bar-group">
+                <div class="bar-wrap">
+                  <div class="bar bar-revenue" style="height:132px" title="T8: 88tr ₫"></div>
+                  <div class="bar bar-tickets" style="height:88px" title="T8: 1180 vé"></div>
+                </div>
+                <span class="bar-label">T8</span>
+              </div>
+              <!-- T9 -->
+              <div class="bar-group">
+                <div class="bar-wrap">
+                  <div class="bar bar-revenue" style="height:114px" title="T9: 76tr ₫"></div>
+                  <div class="bar bar-tickets" style="height:76px" title="T9: 1020 vé"></div>
+                </div>
+                <span class="bar-label">T9</span>
+              </div>
+              <!-- T10 -->
+              <div class="bar-group">
+                <div class="bar-wrap">
+                  <div class="bar bar-revenue" style="height:136px" title="T10: 91tr ₫"></div>
+                  <div class="bar bar-tickets" style="height:91px" title="T10: 1220 vé"></div>
+                </div>
+                <span class="bar-label">T10</span>
+              </div>
+              <!-- T11 -->
+              <div class="bar-group">
+                <div class="bar-wrap">
+                  <div class="bar bar-revenue" style="height:150px" title="T11: 105tr ₫"></div>
+                  <div class="bar bar-tickets" style="height:105px" title="T11: 1400 vé"></div>
+                </div>
+                <span class="bar-label">T11</span>
+              </div>
+              <!-- T12 -->
+              <div class="bar-group">
+                <div class="bar-wrap">
+                  <div class="bar bar-revenue" style="height:150px" title="T12: 120tr ₫"></div>
+                  <div class="bar bar-tickets" style="height:121px" title="T12: 1620 vé"></div>
+                </div>
+                <span class="bar-label">T12</span>
+              </div>
+            </div>
+            <div class="chart-legend">
+              <div class="legend-item"><div class="legend-dot" style="background:#1a3a8f"></div> Doanh thu</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#a3c4f8"></div> Số vé</div>
+            </div>
+          </div>
+
+          <!-- Pie chart (CSS) -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3 class="chart-title">Doanh Thu Theo Rạp</h3>
+            </div>
+            <div class="pie-placeholder"></div>
+            <div class="pie-legend">
+              <div class="pie-legend-item">
+                <div class="pie-dot" style="background:#1a3a8f"></div>
+                <span class="pie-name">CGV Vincom Bà Triệu</span>
+                <span class="pie-val">38%</span>
+              </div>
+              <div class="pie-legend-item">
+                <div class="pie-dot" style="background:#5b21b6"></div>
+                <span class="pie-name">CGV Vincom Đồng Khởi</span>
+                <span class="pie-val">24%</span>
+              </div>
+              <div class="pie-legend-item">
+                <div class="pie-dot" style="background:#0a7a40"></div>
+                <span class="pie-name">Lotte Cinema Hà Đông</span>
+                <span class="pie-val">16%</span>
+              </div>
+              <div class="pie-legend-item">
+                <div class="pie-dot" style="background:#92600a"></div>
+                <span class="pie-name">BHD Star Bitexco</span>
+                <span class="pie-val">12%</span>
+              </div>
+              <div class="pie-legend-item">
+                <div class="pie-dot" style="background:#c0392b"></div>
+                <span class="pie-name">Khác</span>
+                <span class="pie-val">10%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top movies + Transactions -->
+        <div class="two-col-row">
+          <!-- Top movies -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3 class="chart-title">Top Phim Doanh Thu Cao</h3>
+            </div>
+            <div class="top-list">
+              <div class="top-item">
+                <div class="top-rank rank-1">1</div>
+                <div class="top-info">
+                  <span class="top-title">Spider-Man: No Way Home</span>
+                  <span class="top-meta">Action / Sci-Fi &nbsp;•&nbsp; 3,240 vé</span>
+                </div>
+                <span class="top-revenue">242tr ₫</span>
+              </div>
+              <div class="top-item">
+                <div class="top-rank rank-2">2</div>
+                <div class="top-info">
+                  <span class="top-title">The Batman</span>
+                  <span class="top-meta">Action / Crime &nbsp;•&nbsp; 2,870 vé</span>
+                </div>
+                <span class="top-revenue">214tr ₫</span>
+              </div>
+              <div class="top-item">
+                <div class="top-rank rank-3">3</div>
+                <div class="top-info">
+                  <span class="top-title">Dune: Part Two</span>
+                  <span class="top-meta">Sci-Fi &nbsp;•&nbsp; 2,560 vé</span>
+                </div>
+                <span class="top-revenue">191tr ₫</span>
+              </div>
+              <div class="top-item">
+                <div class="top-rank rank-n">4</div>
+                <div class="top-info">
+                  <span class="top-title">Encanto</span>
+                  <span class="top-meta">Animation &nbsp;•&nbsp; 2,110 vé</span>
+                </div>
+                <span class="top-revenue">158tr ₫</span>
+              </div>
+              <div class="top-item">
+                <div class="top-rank rank-n">5</div>
+                <div class="top-info">
+                  <span class="top-title">No Time to Die</span>
+                  <span class="top-meta">Action &nbsp;•&nbsp; 1,980 vé</span>
+                </div>
+                <span class="top-revenue">148tr ₫</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Transactions -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3 class="chart-title">Giao Dịch Gần Đây</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Mã Đơn</th>
+                  <th>Khách Hàng</th>
+                  <th>Phim</th>
+                  <th>Vé</th>
+                  <th>Thành Tiền</th>
+                  <th>Thời Gian</th>
+                  <th>Trạng Thái</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="txn-id">#1001</span></td>
+                  <td><span class="text-strong">Nguyễn Văn A</span></td>
+                  <td><span class="text-muted">Spider-Man NWH</span></td>
+                  <td><span class="text-muted">2</span></td>
+                  <td><span class="txn-amount">140.000 ₫</span></td>
+                  <td><span class="text-muted">13/04/2026 19:30</span></td>
+                  <td><span class="badge badge-green">Thành Công</span></td>
+                </tr>
+                <tr>
+                  <td><span class="txn-id">#1002</span></td>
+                  <td><span class="text-strong">Trần Thị B</span></td>
+                  <td><span class="text-muted">The Batman</span></td>
+                  <td><span class="text-muted">4</span></td>
+                  <td><span class="txn-amount">320.000 ₫</span></td>
+                  <td><span class="text-muted">13/04/2026 20:00</span></td>
+                  <td><span class="badge badge-green">Thành Công</span></td>
+                </tr>
+                <tr>
+                  <td><span class="txn-id">#1003</span></td>
+                  <td><span class="text-strong">Lê Văn C</span></td>
+                  <td><span class="text-muted">Dune: Part Two</span></td>
+                  <td><span class="text-muted">1</span></td>
+                  <td><span class="txn-amount">90.000 ₫</span></td>
+                  <td><span class="text-muted">13/04/2026 14:15</span></td>
+                  <td><span class="badge badge-red">Đã Hủy</span></td>
+                </tr>
+                <tr>
+                  <td><span class="txn-id">#1004</span></td>
+                  <td><span class="text-strong">Phạm Thị D</span></td>
+                  <td><span class="text-muted">Encanto</span></td>
+                  <td><span class="text-muted">3</span></td>
+                  <td><span class="txn-amount">210.000 ₫</span></td>
+                  <td><span class="text-muted">12/04/2026 16:00</span></td>
+                  <td><span class="badge badge-green">Thành Công</span></td>
+                </tr>
+                <tr>
+                  <td><span class="txn-id">#1005</span></td>
+                  <td><span class="text-strong">Hoàng Văn E</span></td>
+                  <td><span class="text-muted">Oppenheimer</span></td>
+                  <td><span class="text-muted">2</span></td>
+                  <td><span class="txn-amount">160.000 ₫</span></td>
+                  <td><span class="text-muted">12/04/2026 21:00</span></td>
+                  <td><span class="badge badge-green">Thành Công</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

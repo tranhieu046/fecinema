@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tổng Quan – Admin</title>
+  <link rel="stylesheet" href="layout.css" />
+  <style>
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .dash-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .dash-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .dash-body { display: flex; flex-direction: column; gap: 4px; }
+    .dash-label {
+      font-size: 12px; font-weight: 600; color: #888;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .dash-value {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 26px; font-weight: 900; color: #1a1a2e; line-height: 1;
+    }
+    .dash-sub { font-size: 12px; color: #888; margin-top: 2px; }
+    .dash-sub.up { color: #0a7a40; }
+
+    .shortcuts-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .shortcut-card {
+      background: #fff; border-radius: 12px; padding: 20px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      text-decoration: none; color: #1a1a2e;
+      display: flex; align-items: center; gap: 14px;
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .shortcut-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    .shortcut-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .shortcut-info { display: flex; flex-direction: column; gap: 2px; }
+    .shortcut-name { font-weight: 700; font-size: 14px; color: #1a1a2e; }
+    .shortcut-desc { font-size: 12px; color: #999; }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">
+      <span class="admin-sidebar__logo-icon">🎬</span>
+      <span class="admin-sidebar__logo-text">Admin</span>
+    </div>
+    <nav class="admin-sidebar__nav">
+      <a href="index.html" class="admin-nav-item active">
+        <span class="admin-nav-item__icon">📊</span>
+        <span>Tổng Quan</span>
+      </a>
+      <a href="movies.html" class="admin-nav-item">
+        <span class="admin-nav-item__icon">🎬</span>
+        <span>Quản Lý Phim</span>
+      </a>
+      <a href="showtimes.html" class="admin-nav-item">
+        <span class="admin-nav-item__icon">📅</span>
+        <span>Lịch Chiếu</span>
+      </a>
+      <a href="cinema-rooms.html" class="admin-nav-item">
+        <span class="admin-nav-item__icon">🏛️</span>
+        <span>Quản Lý Phòng</span>
+      </a>
+      <a href="cinemas.html" class="admin-nav-item">
+        <span class="admin-nav-item__icon">🏢</span>
+        <span>Quản Lý Rạp</span>
+      </a>
+      <a href="users.html" class="admin-nav-item">
+        <span class="admin-nav-item__icon">👥</span>
+        <span>Người Dùng</span>
+      </a>
+      <a href="reports.html" class="admin-nav-item">
+        <span class="admin-nav-item__icon">📈</span>
+        <span>Báo Cáo</span>
+      </a>
+    </nav>
+    <button class="admin-sidebar__logout">🚪 Đăng Xuất</button>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="admin-content">
+    <header class="admin-header">
+      <div class="admin-header__user">
+        <div class="admin-header__avatar">👤</div>
+        <span class="admin-header__name">Admin</span>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1 class="page-title">Tổng Quan</h1>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="dashboard-grid">
+        <div class="dash-card">
+          <div class="dash-icon" style="background:#e8efff;color:#1a3a8f">💰</div>
+          <div class="dash-body">
+            <span class="dash-label">Tổng Doanh Thu</span>
+            <span class="dash-value">831tr ₫</span>
+            <span class="dash-sub up">↑ Quý 1/2026</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-icon" style="background:#e6f9f0;color:#0a7a40">🎟️</div>
+          <div class="dash-body">
+            <span class="dash-label">Tổng Vé Bán</span>
+            <span class="dash-value">11,240</span>
+            <span class="dash-sub up">↑ vé đã bán</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-icon" style="background:#f0eaff;color:#5b21b6">🎬</div>
+          <div class="dash-body">
+            <span class="dash-label">Phim Đang Chiếu</span>
+            <span class="dash-value">12</span>
+            <span class="dash-sub">5 phim sắp ra mắt</span>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-icon" style="background:#fff3e0;color:#c35a00">👤</div>
+          <div class="dash-body">
+            <span class="dash-label">Người Dùng Mới</span>
+            <span class="dash-value">87</span>
+            <span class="dash-sub">Tổng: 324 người dùng</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="page-header" style="margin-bottom: 16px">
+        <h2 style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;color:#1a1a2e">Truy Cập Nhanh</h2>
+      </div>
+      <div class="shortcuts-row">
+        <a href="movies.html" class="shortcut-card">
+          <div class="shortcut-icon" style="background:#e8efff">🎬</div>
+          <div class="shortcut-info">
+            <span class="shortcut-name">Quản Lý Phim</span>
+            <span class="shortcut-desc">Thêm, sửa, xóa phim</span>
+          </div>
+        </a>
+        <a href="showtimes.html" class="shortcut-card">
+          <div class="shortcut-icon" style="background:#e6f9f0">📅</div>
+          <div class="shortcut-info">
+            <span class="shortcut-name">Lịch Chiếu</span>
+            <span class="shortcut-desc">Quản lý suất chiếu</span>
+          </div>
+        </a>
+        <a href="reports.html" class="shortcut-card">
+          <div class="shortcut-icon" style="background:#fff3e0">📈</div>
+          <div class="shortcut-info">
+            <span class="shortcut-name">Báo Cáo</span>
+            <span class="shortcut-desc">Thống kê doanh thu</span>
+          </div>
+        </a>
+        <a href="cinemas.html" class="shortcut-card">
+          <div class="shortcut-icon" style="background:#f0f4ff">🏢</div>
+          <div class="shortcut-info">
+            <span class="shortcut-name">Quản Lý Rạp</span>
+            <span class="shortcut-desc">Danh sách rạp chiếu</span>
+          </div>
+        </a>
+        <a href="cinema-rooms.html" class="shortcut-card">
+          <div class="shortcut-icon" style="background:#f0eaff">🏛️</div>
+          <div class="shortcut-info">
+            <span class="shortcut-name">Quản Lý Phòng</span>
+            <span class="shortcut-desc">Phòng chiếu, sức chứa</span>
+          </div>
+        </a>
+        <a href="users.html" class="shortcut-card">
+          <div class="shortcut-icon" style="background:#e6f9f0">👥</div>
+          <div class="shortcut-info">
+            <span class="shortcut-name">Người Dùng</span>
+            <span class="shortcut-desc">Tài khoản khách hàng</span>
+          </div>
+        </a>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản Lý Người Dùng – Admin</title>
+  <link rel="stylesheet" href="layout.css" />
+  <style>
+    .user-cell { display: flex; align-items: center; gap: 12px; }
+    .user-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif; font-size: 13px;
+      font-weight: 800; color: #fff; flex-shrink: 0;
+    }
+    .user-info { display: flex; flex-direction: column; gap: 2px; }
+    .user-display-name { font-weight: 600; color: #1a1a2e; font-size: 14px; }
+    .user-username { font-size: 12px; color: #999; }
+
+    /* Detail Modal */
+    .detail-top {
+      display: flex; align-items: center; gap: 16px;
+      padding-bottom: 16px; margin-bottom: 16px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .detail-avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif; font-size: 18px;
+      font-weight: 800; color: #fff;
+    }
+    .detail-info { display: flex; flex-direction: column; gap: 4px; }
+    .detail-name { font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 800; color: #1a1a2e; }
+    .detail-uname { font-size: 13px; color: #999; }
+    .detail-badges { display: flex; gap: 8px; margin-top: 4px; }
+    .detail-rows { display: flex; flex-direction: column; }
+    .detail-row {
+      display: flex; justify-content: space-between;
+      padding: 10px 0; border-bottom: 1px solid #f5f5f5;
+      font-size: 14px;
+    }
+    .detail-label { color: #888; font-weight: 500; font-size: 13px; }
+    .detail-value { color: #1a1a2e; font-weight: 500; }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo">
+      <span class="admin-sidebar__logo-icon">🎬</span>
+      <span class="admin-sidebar__logo-text">Admin</span>
+    </div>
+    <nav class="admin-sidebar__nav">
+      <a href="index.html" class="admin-nav-item"><span class="admin-nav-item__icon">📊</span><span>Tổng Quan</span></a>
+      <a href="movies.html" class="admin-nav-item"><span class="admin-nav-item__icon">🎬</span><span>Quản Lý Phim</span></a>
+      <a href="showtimes.html" class="admin-nav-item"><span class="admin-nav-item__icon">📅</span><span>Lịch Chiếu</span></a>
+      <a href="cinema-rooms.html" class="admin-nav-item"><span class="admin-nav-item__icon">🏛️</span><span>Quản Lý Phòng</span></a>
+      <a href="cinemas.html" class="admin-nav-item"><span class="admin-nav-item__icon">🏢</span><span>Quản Lý Rạp</span></a>
+      <a href="users.html" class="admin-nav-item active"><span class="admin-nav-item__icon">👥</span><span>Người Dùng</span></a>
+      <a href="reports.html" class="admin-nav-item"><span class="admin-nav-item__icon">📈</span><span>Báo Cáo</span></a>
+    </nav>
+    <button class="admin-sidebar__logout">🚪 Đăng Xuất</button>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="admin-content">
+    <header class="admin-header">
+      <div class="admin-header__user">
+        <div class="admin-header__avatar">👤</div>
+        <span class="admin-header__name">Admin</span>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1 class="page-title">Quản Lý Người Dùng</h1>
+        </div>
+        <div class="page-stats">
+          <span class="stat-item">Tổng: <strong>6</strong></span>
+          <span class="stat-item stat-green">Hoạt động: <strong>4</strong></span>
+          <span class="stat-item stat-red">Đã khóa: <strong>1</strong></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar__filters">
+            <div class="input-search" style="width:300px">
+              <span class="s-icon">🔍</span>
+              <input type="text" placeholder="Tìm theo tên, username, email..." style="width:240px"/>
+            </div>
+            <select class="filter-select">
+              <option value="">Vai Trò</option>
+              <option>Người Dùng</option>
+              <option>Quản Trị</option>
+            </select>
+            <button class="btn btn-icon" title="Tải lại">↻</button>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Người Dùng</th>
+              <th>Email</th>
+              <th>Điện Thoại</th>
+              <th>Vai Trò</th>
+              <th>Trạng Thái</th>
+              <th>Ngày Tạo</th>
+              <th>Thao Tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <div class="user-avatar" style="background:#1a3a8f">NA</div>
+                  <div class="user-info">
+                    <span class="user-display-name">Nguyễn Văn Admin</span>
+                    <span class="user-username">@admin</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">admin@cinema.vn</span></td>
+              <td><span class="text-muted">0912 345 678</span></td>
+              <td><span class="badge badge-gold">👑 Quản Trị</span></td>
+              <td><span class="badge badge-green">Hoạt Động</span></td>
+              <td><span class="text-muted">01/01/2026</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-sm-icon btn-view" title="Xem chi tiết" onclick="document.getElementById('userDetailModal').classList.add('open')">👁</button>
+                  <button class="btn btn-sm-icon btn-lock" title="Khóa tài khoản">🔒</button>
+                  <button class="btn btn-sm-icon btn-danger" title="Xóa" onclick="return confirm('Xóa người dùng này?')">🗑</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <div class="user-avatar" style="background:#5b21b6">TB</div>
+                  <div class="user-info">
+                    <span class="user-display-name">Trần Thị Bình</span>
+                    <span class="user-username">@binh.tran</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">binh.tran@gmail.com</span></td>
+              <td><span class="text-muted">0934 567 890</span></td>
+              <td><span class="badge badge-blue">👤 Người Dùng</span></td>
+              <td><span class="badge badge-green">Hoạt Động</span></td>
+              <td><span class="text-muted">10/02/2026</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-sm-icon btn-view" title="Xem chi tiết" onclick="document.getElementById('userDetailModal').classList.add('open')">👁</button>
+                  <button class="btn btn-sm-icon btn-lock" title="Khóa tài khoản">🔒</button>
+                  <button class="btn btn-sm-icon btn-danger" title="Xóa" onclick="return confirm('Xóa người dùng này?')">🗑</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <div class="user-avatar" style="background:#0a7a40">LC</div>
+                  <div class="user-info">
+                    <span class="user-display-name">Lê Văn Cường</span>
+                    <span class="user-username">@cuong.le</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">cuong.le@gmail.com</span></td>
+              <td><span class="text-muted">—</span></td>
+              <td><span class="badge badge-blue">👤 Người Dùng</span></td>
+              <td><span class="badge badge-red">Đã Khóa</span></td>
+              <td><span class="text-muted">15/02/2026</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-sm-icon btn-view" title="Xem chi tiết" onclick="document.getElementById('userDetailModal').classList.add('open')">👁</button>
+                  <button class="btn btn-sm-icon btn-unlock" title="Mở khóa">🔓</button>
+                  <button class="btn btn-sm-icon btn-danger" title="Xóa" onclick="return confirm('Xóa người dùng này?')">🗑</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <div class="user-avatar" style="background:#92600a">PD</div>
+                  <div class="user-info">
+                    <span class="user-display-name">Phạm Thị Duyên</span>
+                    <span class="user-username">@duyen.pham</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">duyen.pham@gmail.com</span></td>
+              <td><span class="text-muted">0945 123 456</span></td>
+              <td><span class="badge badge-blue">👤 Người Dùng</span></td>
+              <td><span class="badge badge-green">Hoạt Động</span></td>
+              <td><span class="text-muted">20/03/2026</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-sm-icon btn-view" title="Xem chi tiết" onclick="document.getElementById('userDetailModal').classList.add('open')">👁</button>
+                  <button class="btn btn-sm-icon btn-lock" title="Khóa tài khoản">🔒</button>
+                  <button class="btn btn-sm-icon btn-danger" title="Xóa" onclick="return confirm('Xóa người dùng này?')">🗑</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <div class="user-avatar" style="background:#c0392b">HE</div>
+                  <div class="user-info">
+                    <span class="user-display-name">Hoàng Văn Ên</span>
+                    <span class="user-username">@en.hoang</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">en.hoang@yahoo.com</span></td>
+              <td><span class="text-muted">0901 234 567</span></td>
+              <td><span class="badge badge-blue">👤 Người Dùng</span></td>
+              <td><span class="badge badge-orange">Chờ Xác Minh</span></td>
+              <td><span class="text-muted">05/04/2026</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-sm-icon btn-view" title="Xem chi tiết" onclick="document.getElementById('userDetailModal').classList.add('open')">👁</button>
+                  <button class="btn btn-sm-icon btn-lock" title="Khóa tài khoản">🔒</button>
+                  <button class="btn btn-sm-icon btn-danger" title="Xóa" onclick="return confirm('Xóa người dùng này?')">🗑</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <div class="user-avatar" style="background:#1a7a8f">VT</div>
+                  <div class="user-info">
+                    <span class="user-display-name">Vũ Thị Thảo</span>
+                    <span class="user-username">@thao.vu</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="text-muted">thao.vu@gmail.com</span></td>
+              <td><span class="text-muted">0968 765 432</span></td>
+              <td><span class="badge badge-blue">👤 Người Dùng</span></td>
+              <td><span class="badge badge-green">Hoạt Động</span></td>
+              <td><span class="text-muted">08/04/2026</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="btn btn-sm-icon btn-view" title="Xem chi tiết" onclick="document.getElementById('userDetailModal').classList.add('open')">👁</button>
+                  <button class="btn btn-sm-icon btn-lock" title="Khóa tài khoản">🔒</button>
+                  <button class="btn btn-sm-icon btn-danger" title="Xóa" onclick="return confirm('Xóa người dùng này?')">🗑</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pagination">
+          <span class="pag-info">Hiển thị 1 đến 6 của 6 người dùng</span>
+          <button class="pag-btn">‹</button>
+          <button class="pag-btn active">1</button>
+          <button class="pag-btn">›</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- USER DETAIL MODAL -->
+<div class="modal-overlay" id="userDetailModal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Chi Tiết Người Dùng</span>
+      <button class="modal-close" onclick="document.getElementById('userDetailModal').classList.remove('open')">×</button>
+    </div>
+
+    <div class="detail-top">
+      <div class="detail-avatar" style="background:#5b21b6">TB</div>
+      <div class="detail-info">
+        <p class="detail-name">Trần Thị Bình</p>
+        <span class="detail-uname">@binh.tran</span>
+        <div class="detail-badges">
+          <span class="badge badge-blue">👤 Người Dùng</span>
+          <span class="badge badge-green">Hoạt Động</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-rows">
+      <div class="detail-row">
+        <span class="detail-label">Mã người dùng</span>
+        <span class="detail-value">#2</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Email</span>
+        <span class="detail-value">binh.tran@gmail.com</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Điện thoại</span>
+        <span class="detail-value">0934 567 890</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Ngày sinh</span>
+        <span class="detail-value">15/05/1995</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Giới tính</span>
+        <span class="detail-value">Nữ</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Ngày tạo</span>
+        <span class="detail-value">10/02/2026</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
